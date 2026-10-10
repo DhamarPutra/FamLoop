@@ -8,3 +8,13 @@ uploads/avatars/*
 !uploads/avatars/.gitkeep
 docker-compose.yml
 Dockerfile
+
+# Build outputs & Android
+*.apk
+*.aab
+*.dex
+*.jks
+*.keystore
+.gradle/
+**/build/
+local.properties

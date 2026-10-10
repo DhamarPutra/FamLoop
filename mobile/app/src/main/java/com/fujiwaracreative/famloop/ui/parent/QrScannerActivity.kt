@@ -122,8 +122,9 @@ class QrScannerActivity : AppCompatActivity() {
                 scanner.process(image)
                     .addOnSuccessListener { barcodes ->
                         for (barcode in barcodes) {
-                            barcode.rawValue?.let {
-                                onBarcodeFound(it)
+                            val raw = barcode.rawValue
+                            if (raw != null) {
+                                onBarcodeFound(raw)
                                 break
                             }
                         }

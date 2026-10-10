@@ -1,0 +1,32 @@
+# Gradle & Build Outputs
+.gradle/
+build/
+app/build/
+**/build/
+*.apk
+*.aab
+*.aar
+*.dex
+*.class
+
+# Machine-specific Android SDK configuration
+local.properties
+
+# Gradle Wrapper
+gradle/
+gradlew
+gradlew.bat
+
+# IDE & Editor files
+.idea/
+*.iml
+captures/
+.externalNativeBuild/
+.cxx/
+*.jks
+*.keystore
+
+
+# OS files
+.DS_Store
+Thumbs.db

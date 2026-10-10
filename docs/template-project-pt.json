@@ -1,0 +1,31 @@
+{
+  "$schema": "https://fujiwaracreative.my.id/schemas/project-pt.json",
+  "title": "FamLoop — Family Real-Time Location Tracking Platform",
+  "slug": "famloop",
+  "description": "Sistem pelacakan lokasi keluarga real-time hemat daya dan tahan blokir firewall dengan integrasi Android Native, Go Fiber, dan Leaflet Map.",
+  "content": "## Gambaran Proyek\n\nFamLoop adalah platform pelacakan lokasi keluarga real-time tingkat produksi yang dikembangkan di bawah standar arsitektur PT FUJIWARA CREATIVE SOLUSINDO. Solusi ini menghadirkan proteksi privasi keluarga penuh (zero third-party advertising), efisiensi konsumsi daya baterai, serta ketahanan komunikasi data di jaringan tertutup.\n\n### Fitur Utama\n- **Pairing Hardware QR Code Instan**: Pemasangan perangkat anggota keluarga tanpa registrasi akun rumit melalui pembacaan hardware ID via CameraX & ML Kit.\n- **Offline Buffer & Auto Sync Resilient**: Penyimpanan koordinat offline berbasis Room DB dan sinkronisasi batch otomatis berkala via Android WorkManager saat koneksi internet kembali aktif.\n- **Visualisasi Peta Real-Time Mandiri**: Integrasi peta Leaflet.js dengan OpenStreetMap tiles dan avatar marker kustom/acak, bebas biaya lisensi map pihak ketiga.\n- **Firewall-Resistant SSE Streaming**: Pengiriman pembaruan lokasi dan pergantian avatar secara instan menggunakan Server-Sent Events (SSE) yang melewati filter proxy jaringan korporat dan institusi pendidikan.\n- **Backend Berperforma Tinggi**: Layanan Go Fiber v2 dengan arsitektur Clean Architecture, SQLite WAL mode nir-CGO, serta embedded MQTT broker untuk integrasi hardware IoT GPS masa depan.\n\n### Arsitektur Teknologi & Kepatuhan\nDibangun dengan standar rekayasa perangkat lunak PT FUJIWARA CREATIVE SOLUSINDO, menerapkan Clean Architecture berorientasi Dependency Inversion, kesiapan OWASP Mobile Security, serta integrasi metadata Generative Engine Optimization (GEO) dan Schema.org JSON-LD.",
+  "tags": [
+    "Go",
+    "Android",
+    "Kotlin",
+    "Fiber",
+    "SQLite",
+    "Leaflet",
+    "Clean Architecture",
+    "Real-Time",
+    "Docker"
+  ],
+  "thumbnail_url": "",
+  "gallery": [],
+  "demo_url": "https://famloop.my.id",
+  "github_url": "https://github.com/FujiwaraCreative",
+  "is_published": true,
+  "contributors": [
+    {
+      "name": "Dhamar Putra Pangestu",
+      "position": "Lead Software Architect",
+      "link": "https://fujiwaracreative.my.id/@dhamar",
+      "photo_url": ""
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://fujiwaracreative.my.id/schemas/project-personal.json",
+  "title": "FamLoop — Family Real-Time Location Tracking Platform",
+  "slug": "famloop",
+  "description": "Platform pelacakan lokasi keluarga real-time yang tangguh, hemat baterai, dan tahan blokir firewall dengan backend Go Fiber, SQLite WAL, dan aplikasi Android Kotlin Native.",
+  "content": "## Latar Belakang Proyek\n\nFamLoop dirancang sebagai solusi mandiri pelacakan lokasi keluarga (*family location tracking*) yang mengutamakan privasi, efisiensi konsumsi daya, serta keandalan transmisi data tanpa ketergantungan pada API komersial berbayar (bebas Google Maps API key) dan bebas hambatan firewall jaringan publik/sekolah.\n\n### Fitur Utama\n- **Hardware QR Code Pairing**: Menghubungkan perangkat anak ke akun orang tua tanpa akun/email tambahan, menggunakan hardware UUID perangkat dan scanner kamera CameraX & ML Kit.\n- **Offline-First Location Buffering**: Buffer koordinat otomatis di Room SQLite saat perangkat kehilangan sinyal, dan sinkronisasi batch via WorkManager saat jaringan pulih dengan indeks anti-duplikasi.\n- **Peta Interaktif Leaflet.js & Avatar Bubbles**: Peta real-time OpenStreetMap dengan bubble avatar dinamis, 12 karakter kartun default ceria, dan dukungan upload foto profil kustom.\n- **Tahan Blokir Firewall (SSE Streaming)**: Transmisi real-time menggunakan protokol Server-Sent Events (SSE) berbasis HTTP standar yang 99.9% lolos inspeksi firewall WiFi sekolah/kantor.\n- **Otentikasi & Manajemen Grup Keluarga**: Registrasi kepala keluarga terproteksi JWT Bearer token, pembuatan grup keluarga, pemantauan status online dan level baterai anggota.\n\n### Teknologi yang Digunakan\n- **Backend**: Go 1.24, Fiber v2, SQLite WAL (pure Go modernc.org/sqlite), Thread-Safe SSE Hub, Embedded Mochi-MQTT Broker\n- **Mobile**: Android Native (Kotlin), Room DB, WorkManager, Fused Location Provider, CameraX & ML Kit, Leaflet.js WebView\n- **Web**: Astro v5, Tailwind CSS, Schema.org JSON-LD, Generative Engine Optimization (llms.txt)\n- **Infrastruktur**: Docker multi-stage build, Nginx Proxy Manager",
+  "tags": [
+    "Go",
+    "Android",
+    "Kotlin",
+    "Fiber",
+    "SQLite",
+    "Leaflet",
+    "Clean Architecture",
+    "Real-Time",
+    "IoT",
+    "Docker"
+  ],
+  "thumbnail_url": "",
+  "gallery": [],
+  "demo_url": "https://famloop.my.id",
+  "github_url": "https://github.com/dhamarputra/FamLoop",
+  "contributors": [
+    {
+      "name": "Dhamar Putra",
+      "position": "Creator & Full Stack Mobile/Backend Architect",
+      "link": "https://fujiwaracreative.my.id/personal",
+      "photo_url": ""
+    }
+  ]
+}
