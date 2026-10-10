@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import LiveDemoMap from '../components/LiveDemoMap.astro';
+import ProblemSolution from '../components/ProblemSolution.astro';
+import Features from '../components/Features.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import PrivacySecurity from '../components/PrivacySecurity.astro';
+import Faq from '../components/Faq.astro';
+import CtaDownload from '../components/CtaDownload.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="FamLoop: Aplikasi Pelindung Lokasi Keluarga Real-Time Indonesia"
+  description="FamLoop memberikan ketenangan pikiran bagi orang tua untuk memantau keberadaan anak secara langsung. Tahan firewall, hemat baterai, dan dilengkapi buffer offline saat sinyal hilang."
+>
+  <Navbar />
+  <main id="main-content">
+    <Hero />
+    <LiveDemoMap />
+    <ProblemSolution />
+    <Features />
+    <HowItWorks />
+    <PrivacySecurity />
+    <Faq />
+    <CtaDownload />
+  </main>
+  <Footer />
+</Layout>

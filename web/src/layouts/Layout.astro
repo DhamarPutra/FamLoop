@@ -1,0 +1,121 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "FamLoop: Pelindung Lokasi Keluarga Real-Time Tanpa Ribet",
+  description = "Aplikasi pelacak lokasi keluarga yang aman, hemat baterai, dan tahan firewall. Hubungkan perangkat anak instan via scan QR tanpa perlu akun email."
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://famloop.my.id");
+
+const schemaOrgJson = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://famloop.my.id/#software",
+      "name": "FamLoop",
+      "alternateName": "FamLoop Family Tracker",
+      "applicationCategory": "FamilySafetyApplication",
+      "operatingSystem": "Android",
+      "url": "https://famloop.my.id",
+      "description": description,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "IDR"
+      },
+      "creator": {
+        "@type": "Corporation",
+        "@id": "https://fujiwaracreative.my.id/#organization",
+        "name": "PT FUJIWARA CREATIVE SOLUSINDO",
+        "alternateName": [
+          "PT FUJIWARA CREATIVE",
+          "PT FUJIWARA",
+          "FUJIWARA CREATIVE SOLUSINDO",
+          "FUJIWARA CREATIVE",
+          "FUJIWARA",
+          "FCS"
+        ],
+        "url": "https://fujiwaracreative.my.id",
+        "logo": "https://fujiwaracreative.my.id/assets/portfolio/images/logo-pt.webp",
+        "email": "admin@fujiwaracreative.my.id"
+      },
+      "author": {
+        "@type": "Person",
+        "@id": "https://fujiwaracreative.my.id/#founder",
+        "name": "Dhamar Putra",
+        "jobTitle": "Principal Architect & Founder",
+        "url": "https://fujiwaracreative.my.id"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://famloop.my.id/#website",
+      "url": "https://famloop.my.id",
+      "name": "FamLoop Family Tracker",
+      "publisher": {
+        "@id": "https://fujiwaracreative.my.id/#organization"
+      }
+    }
+  ]
+};
+---
+
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Open Graph & Twitter Meta -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="FamLoop" />
+    <meta property="og:locale" content="id_ID" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Author & Entity Meta Standards (PT FCS) -->
+    <meta name="author" content="PT FUJIWARA CREATIVE SOLUSINDO" />
+    <meta name="designer" content="Dhamar Putra" />
+    <meta name="publisher" content="PT FUJIWARA CREATIVE SOLUSINDO" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+
+    <!-- Theme Mode Prevention of FOUC -->
+    <script is:inline>
+      (function() {
+        const storedTheme = localStorage.getItem('famloop-theme');
+        if (storedTheme) {
+          document.documentElement.setAttribute('data-theme', storedTheme);
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
+
+    <!-- Schema.org JSON-LD Authorship & Application Graph -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaOrgJson)} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

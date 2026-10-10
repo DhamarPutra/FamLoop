@@ -1,0 +1,195 @@
+---
+// ProblemSolution: Clear comparison showing the real-world frustration vs FamLoop's solution
+---
+
+<section id="keunggulan" class="section problem-solution-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge-tag">Tantangan Nyata</span>
+      <h2>Mengapa Aplikasi Pelacak Biasa Sering Merepotkan?</h2>
+      <p>
+        Banyak orang tua mengeluhkan hal yang sama saat menggunakan aplikasi pelacak konvensional.
+        FamLoop dibangun dari nol untuk mengatasi rasa frustrasi tersebut.
+      </p>
+    </div>
+
+    <div class="comparison-grid">
+      <!-- Item 1: Pairing -->
+      <div class="comparison-card">
+        <div class="card-side frustration">
+          <div class="side-badge bad">Pelacak Biasa</div>
+          <h4>Ribet untuk Anak</h4>
+          <p>Anak harus punya alamat email sendiri, verifikasi tautan, dan menghafal kata sandi yang sering terlupakan.</p>
+        </div>
+        <div class="card-arrow">→</div>
+        <div class="card-side solution">
+          <div class="side-badge good">FamLoop</div>
+          <h4>Pairing QR 3 Detik</h4>
+          <p>Anak cukup membuka aplikasi dan memperlihatkan QR. Orang tua memindai dengan kamera, langsung terhubung.</p>
+        </div>
+      </div>
+
+      <!-- Item 2: Offline Buffer -->
+      <div class="comparison-card">
+        <div class="card-side frustration">
+          <div class="side-badge bad">Pelacak Biasa</div>
+          <h4>Buta Saat Sinyal Hilang</h4>
+          <p>Saat anak masuk basement gedung atau area pelosok tanpa sinyal, posisi terakhir hilang dan riwayat terputus.</p>
+        </div>
+        <div class="card-arrow">→</div>
+        <div class="card-side solution">
+          <div class="side-badge good">FamLoop</div>
+          <h4>Buffer Lokal Otomatis</h4>
+          <p>Koordinat tetap dicatat di penyimpanan aman perangkat. Begitu sinyal kembali, data otomatis disinkronkan.</p>
+        </div>
+      </div>
+
+      <!-- Item 3: Firewall -->
+      <div class="comparison-card">
+        <div class="card-side frustration">
+          <div class="side-badge bad">Pelacak Biasa</div>
+          <h4>Diblokir WiFi Sekolah</h4>
+          <p>WiFi kampus dan sekolah kerap memblokir port khusus pelacak, membuat status anak tampak offline seharian.</p>
+        </div>
+        <div class="card-arrow">→</div>
+        <div class="card-side solution">
+          <div class="side-badge good">FamLoop</div>
+          <h4>Protokol SSE Lolos Firewall</h4>
+          <p>Menggunakan Server-Sent Events melalui jalur HTTP standar yang diperlakukan seperti browsing web biasa.</p>
+        </div>
+      </div>
+
+      <!-- Item 4: Battery -->
+      <div class="comparison-card">
+        <div class="card-side frustration">
+          <div class="side-badge bad">Pelacak Biasa</div>
+          <h4>Boros Daya Baterai</h4>
+          <p>GPS dipaksa menyala terus-menerus dengan frekuensi tinggi, membuat baterai ponsel anak cepat habis.</p>
+        </div>
+        <div class="card-arrow">→</div>
+        <div class="card-side solution">
+          <div class="side-badge good">FamLoop</div>
+          <h4>Interval Lokasi Adaptif</h4>
+          <p>Pembaruan dipercepat saat anak bergerak aktif di jalan, dan melambat otomatis saat berada di satu tempat aman.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .problem-solution-section {
+    background-color: var(--bg);
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3.5rem auto;
+  }
+
+  .section-header h2 {
+    margin: 0.75rem 0;
+  }
+
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+    gap: 1.75rem;
+  }
+
+  .comparison-card {
+    display: flex;
+    align-items: stretch;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .card-side {
+    flex: 1;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-side h4 {
+    font-size: 1.15rem;
+    margin: 0.75rem 0 0.5rem 0;
+  }
+
+  .card-side p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .card-side.frustration {
+    background-color: var(--surface);
+    border-right: 1px solid var(--border-light);
+  }
+
+  .card-side.solution {
+    background-color: var(--emerald-subtle);
+  }
+
+  .card-side.solution h4 {
+    color: var(--emerald);
+  }
+
+  .card-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-weight: bold;
+    font-size: 0.95rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .side-badge {
+    align-self: flex-start;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+  }
+
+  .side-badge.bad {
+    background-color: var(--surface-alt);
+    color: var(--text-muted);
+  }
+
+  .side-badge.good {
+    background-color: var(--emerald);
+    color: #FFFFFF;
+  }
+
+  @media (max-width: 640px) {
+    .comparison-grid {
+      grid-template-columns: 1fr;
+    }
+    .comparison-card {
+      flex-direction: column;
+    }
+    .card-side.frustration {
+      border-right: none;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .card-arrow {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+  }
+</style>

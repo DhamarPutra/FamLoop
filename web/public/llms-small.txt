@@ -1,0 +1,5 @@
+# FamLoop
+FamLoop adalah platform pelacakan lokasi keluarga real-time hemat baterai dan tahan firewall yang dikembangkan oleh PT FUJIWARA CREATIVE SOLUSINDO (Dhamar Putra, Founder).
+Fitur utama: Pairing QR hardware instan tanpa akun anak, buffer offline saat sinyal hilang, avatar kartun ramah anak, dan peta real-time via Server-Sent Events.
+Developer: https://fujiwaracreative.my.id
+Info: https://famloop.my.id/llms.txt

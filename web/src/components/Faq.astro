@@ -1,0 +1,153 @@
+---
+// Faq: Real questions asked by parents regarding child tracking and network reliability
+---
+
+<section id="faq" class="section faq-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge-tag">Tanya Jawab</span>
+      <h2>Pertanyaan yang Kerap Ditanyakan Orang Tua</h2>
+      <p>Jawaban transparan untuk membantu Anda memahami cara kerja FamLoop menjaga keluarga Anda.</p>
+    </div>
+
+    <div class="faq-list">
+      <!-- FAQ 1 -->
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>Apakah anak harus membuat akun email atau mengingat kata sandi?</span>
+          <span class="faq-chevron">▾</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Sama sekali tidak. Anak cukup mengunduh aplikasi FamLoop di ponselnya dan mengetuk tombol untuk menampilkan kode QR. Orang tua memindai kode QR tersebut menggunakan kamera, dan perangkat anak akan langsung terhubung ke grup keluarga tanpa registrasi apa pun.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 2 -->
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>Bagaimana jika anak berada di area tanpa sinyal seluler atau mode pesawat?</span>
+          <span class="faq-chevron">▾</span>
+        </summary>
+        <div class="faq-answer">
+          <p>FamLoop dilengkapi sistem buffer offline. Saat koneksi terputus (misalnya di basement gedung atau daerah terpencil), ponsel anak tetap merekam koordinat GPS ke basis data lokal perangkat. Begitu ponsel kembali menangkap sinyal internet, seluruh titik riwayat akan otomatis disinkronkan ke server tanpa ada jejak yang hilang.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 3 -->
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>Apakah aplikasi ini membuat baterai ponsel anak cepat habis?</span>
+          <span class="faq-chevron">▾</span>
+        </summary>
+        <div class="faq-answer">
+          <p>FamLoop menggunakan interval penentuan posisi adaptif. Saat ponsel mendeteksi anak sedang bergerak aktif di perjalanan, frekuensi pembaruan akan dinaikkan untuk ketepatan arah. Namun saat anak sedang belajar di kelas atau berada di rumah dalam keadaan diam, frekuensi pembaruan otomatis diturunkan untuk menghemat daya baterai secara signifikan.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 4 -->
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>Mengapa FamLoop tetap bisa terhubung di WiFi sekolah yang memblokir pelacak lain?</span>
+          <span class="faq-chevron">▾</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Sebagian besar aplikasi pelacak komersial menggunakan port jaringan khusus atau websocket yang sering disaring oleh firewall WiFi sekolah maupun kantor. FamLoop memanfaatkan teknologi Server-Sent Events (SSE) yang mengalir melalui port HTTP standar, sehingga lalu lintas data diperlakukan sama seperti browsing web biasa dan lolos dari pemblokiran.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 5 -->
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>Bisakah orang tua memantau beberapa anak sekaligus dalam satu tampilan?</span>
+          <span class="faq-chevron">▾</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Bisa. Satu akun kepala keluarga dapat menghubungkan beberapa perangkat anak dan kerabat ke dalam satu grup. Di peta utama, seluruh avatar anggota akan muncul secara bersamaan lengkap dengan persentase baterai masing-masing.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 6 -->
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>Apakah anak juga bisa melihat posisi orang tua di peta?</span>
+          <span class="faq-chevron">▾</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Ya. Di ponsel anak tersedia tampilan Peta Keluarga yang memungkinkan anak melihat bahwa orang tua sedang dalam perjalanan menjemput atau berada di rumah, memberikan rasa saling terhubung dan aman bagi kedua belah pihak.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-section {
+    background-color: var(--bg);
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 3.5rem auto;
+  }
+
+  .section-header h2 {
+    margin: 0.75rem 0;
+  }
+
+  .faq-list {
+    max-width: 820px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .faq-item {
+    background-color: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .faq-item[open] {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .faq-question {
+    padding: 1.25rem 1.5rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    user-select: none;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-chevron {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    transition: transform 0.2s ease;
+  }
+
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+    color: var(--primary);
+  }
+
+  .faq-answer {
+    padding: 0 1.5rem 1.25rem 1.5rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    font-size: 0.98rem;
+  }
+</style>

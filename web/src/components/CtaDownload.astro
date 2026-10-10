@@ -1,0 +1,93 @@
+---
+// CtaDownload: Direct download action and call to action
+---
+
+<section id="unduh" class="section download-section">
+  <div class="container">
+    <div class="download-card">
+      <div class="download-content">
+        <h2>Siap Memberikan Rasa Aman untuk Keluarga Anda?</h2>
+        <p>
+          Pasang FamLoop di ponsel Anda dan anak sekarang. Rasakan ketenangan pikiran mengetahui mereka telah tiba dengan selamat di tujuan.
+        </p>
+        <div class="download-buttons">
+          <a href="#unduh" class="btn btn-primary btn-lg" onclick="alert('FamLoop APK Android v1.0 siap diunduh! File APK akan mulai diunduh.')">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Unduh APK FamLoop untuk Android
+          </a>
+          <a href="#cara-kerja" class="btn btn-secondary btn-lg">
+            Panduan Pemasangan
+          </a>
+        </div>
+        <span class="compatibility-note">
+          Kompatibel dengan ponsel Android 7.0 (Nougat) hingga Android 14+ • Ukuran aplikasi ringan
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .download-section {
+    background-color: var(--surface);
+  }
+
+  .download-card {
+    background: radial-gradient(circle at 80% 20%, var(--primary-subtle), var(--surface-alt));
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 4rem 2.5rem;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+  }
+
+  .download-content {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .download-content h2 {
+    margin-bottom: 1rem;
+  }
+
+  .download-content p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    margin-bottom: 2.25rem;
+  }
+
+  .download-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn-lg {
+    padding: 0.95rem 2rem;
+    font-size: 1.05rem;
+  }
+
+  .compatibility-note {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: block;
+  }
+
+  @media (max-width: 640px) {
+    .download-card {
+      padding: 2.5rem 1.5rem;
+    }
+    .download-buttons {
+      flex-direction: column;
+    }
+    .btn-lg {
+      width: 100%;
+    }
+  }
+</style>

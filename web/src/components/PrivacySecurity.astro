@@ -1,0 +1,157 @@
+---
+// PrivacySecurity: Explains the strict security and privacy standards of FamLoop
+---
+
+<section id="privasi" class="section privacy-section">
+  <div class="container">
+    <div class="privacy-container">
+      <div class="privacy-content">
+        <span class="badge-tag">Komitmen Privasi</span>
+        <h2>Privasi dan Keselamatan Keluarga Adalah Prioritas Mutlak</h2>
+        <p>
+          Banyak orang tua khawatir data riwayat perjalanan anak disalahgunakan oleh pihak ketiga.
+          FamLoop dirancang dengan arsitektur tertutup yang menghormati privasi penuh keluarga Anda.
+        </p>
+
+        <div class="privacy-checks">
+          <div class="check-item">
+            <div class="check-icon">✓</div>
+            <div>
+              <strong>Bebas Iklan & Tanpa Broker Data</strong>
+              <p>Kami tidak memasang jaringan iklan digital yang memprofiling kebiasaan harian atau rute sekolah anak.</p>
+            </div>
+          </div>
+
+          <div class="check-item">
+            <div class="check-icon">✓</div>
+            <div>
+              <strong>Hanya Anggota Grup yang Memiliki Akses</strong>
+              <p>Data titik lokasi terenkripsi dan hanya dapat didekripsi oleh anggota yang tergabung resmi di dalam grup keluarga Anda.</p>
+            </div>
+          </div>
+
+          <div class="check-item">
+            <div class="check-icon">✓</div>
+            <div>
+              <strong>Kendali Penuh di Tangan Kepala Keluarga</strong>
+              <p>Orang tua dapat menghapus riwayat perjalanan atau memutuskan sambungan perangkat anggota kapan saja dengan satu sentuhan.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="privacy-card">
+        <div class="shield-icon">🛡️</div>
+        <h3>Arsitektur Aman & Terverifikasi</h3>
+        <p>Sistem dikembangkan dengan standar rekayasa perangkat lunak modern oleh PT FUJIWARA CREATIVE SOLUSINDO.</p>
+        <div class="verified-pill">
+          <span>Terkonfirmasi: Zero Third-Party Tracker</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .privacy-section {
+    background-color: var(--surface);
+    border-top: 1px solid var(--border-light);
+  }
+
+  .privacy-container {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  .privacy-content h2 {
+    margin: 0.75rem 0 1rem 0;
+  }
+
+  .privacy-content > p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .privacy-checks {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .check-item {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .check-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: var(--emerald-subtle);
+    color: var(--emerald);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .check-item strong {
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .check-item p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .privacy-card {
+    background: linear-gradient(145deg, var(--surface-alt), var(--surface));
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+  }
+
+  .shield-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .privacy-card h3 {
+    font-size: 1.35rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .privacy-card p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.75rem;
+  }
+
+  .verified-pill {
+    display: inline-block;
+    background-color: var(--emerald-subtle);
+    color: var(--emerald);
+    border: 1px solid var(--emerald);
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-full);
+  }
+
+  @media (max-width: 860px) {
+    .privacy-container {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,422 @@
+---
+// LiveDemoMap: Interactive simulation of FamLoop's family map, avatar markers, and offline buffer auto-sync
+---
+
+<section id="demo" class="section demo-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge-tag">Simulasi Interaktif</span>
+      <h2>Bagaimana FamLoop Bekerja di Layar Anda</h2>
+      <p>Coba langsung simulasi pemantauan keluarga di bawah ini. Pilih anggota keluarga atau simulasikan saat anak masuk ke area tanpa sinyal.</p>
+    </div>
+
+    <div class="demo-card">
+      <!-- Simulated Phone Header -->
+      <div class="demo-card-header">
+        <div class="header-left">
+          <div class="status-indicator live"></div>
+          <div>
+            <h3 class="group-title">Grup Keluarga Damar</h3>
+            <span class="stream-badge">Live Streaming SSE Aktif</span>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <button id="btn-simulate-offline" class="btn btn-secondary btn-sm" type="button">
+            Simulasi Sinyal Hilang (Basement)
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Map Stage -->
+      <div class="map-stage">
+        <!-- Background Grid & City SVG Elements -->
+        <svg class="map-bg-svg" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="road-grid" width="80" height="80" patternUnits="userSpaceOnUse">
+              <path d="M 80 0 L 0 0 0 80" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.12" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="var(--surface-alt)" />
+          <rect width="100%" height="100%" fill="url(#road-grid)" />
+          
+          <!-- Stylized road paths -->
+          <path d="M -10 140 Q 250 80 600 220 T 1200 160" fill="none" stroke="currentColor" stroke-width="18" opacity="0.08" />
+          <path d="M 300 -20 Q 340 250 480 600" fill="none" stroke="currentColor" stroke-width="14" opacity="0.08" />
+          <path d="M 680 -20 Q 640 300 850 600" fill="none" stroke="currentColor" stroke-width="14" opacity="0.08" />
+        </svg>
+
+        <!-- Dynamic Avatar Markers -->
+        <div id="marker-kakak" class="map-marker" style="top: 38%; left: 32%;">
+          <div class="marker-pulse"></div>
+          <div class="marker-bubble">
+            <span class="marker-name">Kakak (SMP 1)</span>
+            <div class="avatar-circle avatar-lion">🦁</div>
+            <span class="battery-tag tag-green">88%</span>
+          </div>
+        </div>
+
+        <div id="marker-adik" class="map-marker" style="top: 62%; left: 68%;">
+          <div class="marker-pulse"></div>
+          <div class="marker-bubble">
+            <span class="marker-name">Adik (TK Bintang)</span>
+            <div class="avatar-circle avatar-rabbit">🐰</div>
+            <span class="battery-tag tag-green">94%</span>
+          </div>
+        </div>
+
+        <div id="marker-ibu" class="map-marker" style="top: 24%; left: 74%;">
+          <div class="marker-bubble">
+            <span class="marker-name">Ibu (Kantor)</span>
+            <div class="avatar-circle avatar-cat">🐱</div>
+            <span class="battery-tag tag-green">76%</span>
+          </div>
+        </div>
+
+        <!-- Offline Sync Notice Banner -->
+        <div id="offline-alert" class="offline-banner" hidden>
+          <div class="banner-icon">⚠️</div>
+          <div class="banner-text">
+            <strong>Mode Offline Berjalan di HP Kakak:</strong>
+            <span id="buffer-count">3 titik koordinat tersimpan aman di Room SQLite. Bersiap sinkronisasi otomatis...</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Member Selector Footer -->
+      <div class="demo-card-footer">
+        <span class="footer-label">Fokuskan Anggota:</span>
+        <div class="member-pills">
+          <button id="btn-focus-kakak" class="member-pill active" type="button">
+            🦁 Kakak (Sekolah)
+          </button>
+          <button id="btn-focus-adik" class="member-pill" type="button">
+            🐰 Adik (TK)
+          </button>
+          <button id="btn-focus-ibu" class="member-pill" type="button">
+            🐱 Ibu (Kantor)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .demo-section {
+    background-color: var(--surface);
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 3rem auto;
+  }
+
+  .section-header h2 {
+    margin: 0.75rem 0;
+  }
+
+  .demo-card {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .demo-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.75rem;
+    border-bottom: 1px solid var(--border-light);
+    background-color: var(--surface);
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .status-indicator.live {
+    background-color: var(--emerald);
+    box-shadow: 0 0 0 3px var(--emerald-subtle);
+  }
+
+  .status-indicator.offline {
+    background-color: var(--amber);
+    box-shadow: 0 0 0 3px var(--amber-subtle);
+  }
+
+  .group-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+  }
+
+  .stream-badge {
+    font-size: 0.8rem;
+    color: var(--emerald);
+    font-weight: 600;
+  }
+
+  .btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.88rem;
+  }
+
+  .map-stage {
+    position: relative;
+    height: 440px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .map-bg-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--text-muted);
+  }
+
+  .map-marker {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 10;
+  }
+
+  .marker-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: var(--primary-subtle);
+    border: 1px solid var(--primary);
+    animation: pulse 2.2s infinite;
+    pointer-events: none;
+  }
+
+  @keyframes pulse {
+    0% { transform: translate(-50%, -50%) scale(0.6); opacity: 0.9; }
+    100% { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
+  }
+
+  .marker-bubble {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .marker-name {
+    background-color: var(--text-primary);
+    color: var(--surface);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+    margin-bottom: 4px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .avatar-circle {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: var(--surface);
+    border: 3px solid var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.65rem;
+    box-shadow: var(--shadow-md);
+  }
+
+  .battery-tag {
+    position: absolute;
+    bottom: -4px;
+    right: 2px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 8px;
+    color: #FFFFFF;
+    border: 2px solid var(--surface);
+  }
+
+  .tag-green { background-color: var(--emerald); }
+  .tag-amber { background-color: var(--amber); }
+
+  .offline-banner {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--surface);
+    border: 1px solid var(--amber);
+    box-shadow: var(--shadow-md);
+    padding: 0.85rem 1.25rem;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    max-width: 90%;
+    z-index: 20;
+    animation: slideUp 0.3s ease;
+  }
+
+  @keyframes slideUp {
+    from { transform: translate(-50%, 20px); opacity: 0; }
+    to { transform: translate(-50%, 0); opacity: 1; }
+  }
+
+  .banner-icon { font-size: 1.25rem; }
+  .banner-text { font-size: 0.88rem; color: var(--text-primary); }
+
+  .demo-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.75rem;
+    background-color: var(--surface-alt);
+    border-top: 1px solid var(--border-light);
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .footer-label {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+
+  .member-pills {
+    display: flex;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+  }
+
+  .member-pill {
+    padding: 0.45rem 0.95rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    background-color: var(--surface);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    transition: all 0.15s ease;
+  }
+
+  .member-pill:hover, .member-pill.active {
+    background-color: var(--primary);
+    color: #FFFFFF;
+    border-color: var(--primary);
+  }
+
+  @media (max-width: 640px) {
+    .demo-card-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.85rem;
+    }
+    .map-stage { height: 360px; }
+    .demo-card-footer { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+
+<script is:inline>
+  // Interactive Live Demo Logic
+  const btnOffline = document.getElementById('btn-simulate-offline');
+  const offlineAlert = document.getElementById('offline-alert');
+  const bufferCount = document.getElementById('buffer-count');
+  const markerKakak = document.getElementById('marker-kakak');
+  const markerAdik = document.getElementById('marker-adik');
+  const markerIbu = document.getElementById('marker-ibu');
+
+  const pillKakak = document.getElementById('btn-focus-kakak');
+  const pillAdik = document.getElementById('btn-focus-adik');
+  const pillIbu = document.getElementById('btn-focus-ibu');
+
+  let isOfflineMode = false;
+
+  function setActivePill(activePill) {
+    [pillKakak, pillAdik, pillIbu].forEach(p => p && p.classList.remove('active'));
+    if (activePill) activePill.classList.add('active');
+  }
+
+  if (pillKakak && markerKakak) {
+    pillKakak.addEventListener('click', () => {
+      setActivePill(pillKakak);
+      markerKakak.style.transform = 'translate(-50%, -50%) scale(1.18)';
+      setTimeout(() => markerKakak.style.transform = 'translate(-50%, -50%) scale(1)', 400);
+    });
+  }
+
+  if (pillAdik && markerAdik) {
+    pillAdik.addEventListener('click', () => {
+      setActivePill(pillAdik);
+      markerAdik.style.transform = 'translate(-50%, -50%) scale(1.18)';
+      setTimeout(() => markerAdik.style.transform = 'translate(-50%, -50%) scale(1)', 400);
+    });
+  }
+
+  if (pillIbu && markerIbu) {
+    pillIbu.addEventListener('click', () => {
+      setActivePill(pillIbu);
+      markerIbu.style.transform = 'translate(-50%, -50%) scale(1.18)';
+      setTimeout(() => markerIbu.style.transform = 'translate(-50%, -50%) scale(1)', 400);
+    });
+  }
+
+  if (btnOffline && offlineAlert) {
+    btnOffline.addEventListener('click', () => {
+      isOfflineMode = !isOfflineMode;
+      if (isOfflineMode) {
+        btnOffline.textContent = 'Simulasikan Sinyal Pulih (Auto-Sync)';
+        btnOffline.classList.remove('btn-secondary');
+        btnOffline.classList.add('btn-emerald');
+        offlineAlert.hidden = false;
+        if (markerKakak) {
+          markerKakak.style.left = '28%';
+          markerKakak.style.top = '44%';
+        }
+      } else {
+        btnOffline.textContent = 'Simulasi Sinyal Hilang (Basement)';
+        btnOffline.classList.remove('btn-emerald');
+        btnOffline.classList.add('btn-secondary');
+        if (bufferCount) {
+          bufferCount.textContent = 'Internet pulih: Seluruh titik offline berhasil terunggah tanpa ada yang hilang.';
+        }
+        setTimeout(() => {
+          offlineAlert.hidden = true;
+          if (bufferCount) {
+            bufferCount.textContent = '3 titik koordinat tersimpan aman di Room SQLite. Bersiap sinkronisasi otomatis...';
+          }
+        }, 3000);
+        if (markerKakak) {
+          markerKakak.style.left = '32%';
+          markerKakak.style.top = '38%';
+        }
+      }
+    });
+  }
+</script>

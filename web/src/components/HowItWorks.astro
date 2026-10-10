@@ -1,0 +1,222 @@
+---
+// HowItWorks: Practical setup guide illustrating parent and child devices working together
+---
+
+<section id="cara-kerja" class="section how-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge-tag">Panduan Praktis</span>
+      <h2>Mulai Terhubung dalam 3 Langkah Sederhana</h2>
+      <p>Tidak butuh waktu lebih dari satu menit untuk menghubungkan ponsel seluruh anggota keluarga.</p>
+    </div>
+
+    <div class="flow-container">
+      <!-- Step Card 1 -->
+      <div class="flow-card">
+        <div class="flow-tag">Tahap 1: Akun Orang Tua</div>
+        <h3>Buat Grup Keluarga</h3>
+        <p>Orang tua mendaftarkan akun kepala keluarga menggunakan email dan nomor telepon, lalu membuat nama grup (misalnya: "Keluarga Damar").</p>
+        <div class="flow-visual-box">
+          <div class="mini-screen">
+            <span class="screen-title">HP Orang Tua</span>
+            <div class="screen-content">
+              <span class="dummy-input">Grup: Keluarga Bahagia</span>
+              <span class="dummy-btn">+ Tambah Anggota</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step Card 2 -->
+      <div class="flow-card">
+        <div class="flow-tag">Tahap 2: Buka HP Anak</div>
+        <h3>Tampilkan Kode QR</h3>
+        <p>Buka aplikasi FamLoop di ponsel anak. Tanpa perlu mendaftar, langsung ketuk tombol untuk menampilkan QR code perangkat hardware.</p>
+        <div class="flow-visual-box">
+          <div class="mini-screen">
+            <span class="screen-title">HP Anak</span>
+            <div class="screen-content qr-center">
+              <div class="mock-qr">
+                <div class="qr-box top-left"></div>
+                <div class="qr-box top-right"></div>
+                <div class="qr-box bottom-left"></div>
+              </div>
+              <span class="qr-label">QR Siap Dipindai</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step Card 3 -->
+      <div class="flow-card">
+        <div class="flow-tag">Tahap 3: Pindai & Aktif</div>
+        <h3>Arahkan Kamera & Selesai</h3>
+        <p>Gunakan kamera di HP orang tua untuk memindai QR code anak. Perangkat otomatis terdaftar, dan lokasi anak langsung terlihat di peta.</p>
+        <div class="flow-visual-box">
+          <div class="mini-screen">
+            <span class="screen-title">Peta Keluarga Langsung Terbuka</span>
+            <div class="screen-content map-active">
+              <span class="active-badge">✓ Terhubung: Kakak (Online)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .how-section {
+    background-color: var(--bg);
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 3.5rem auto;
+  }
+
+  .section-header h2 {
+    margin: 0.75rem 0;
+  }
+
+  .flow-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .flow-card {
+    background-color: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 2.25rem 1.75rem;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .flow-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+  }
+
+  .flow-tag {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .flow-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .flow-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .flow-visual-box {
+    margin-top: auto;
+    background-color: var(--surface-alt);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .mini-screen {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    width: 100%;
+    max-width: 240px;
+    padding: 0.75rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .screen-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    display: block;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 0.4rem;
+    margin-bottom: 0.6rem;
+    text-align: center;
+  }
+
+  .screen-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .dummy-input {
+    background-color: var(--surface-alt);
+    font-size: 0.72rem;
+    padding: 0.4rem;
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+  }
+
+  .dummy-btn {
+    background-color: var(--primary);
+    color: #FFFFFF;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 0.4rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .qr-center {
+    align-items: center;
+  }
+
+  .mock-qr {
+    width: 64px;
+    height: 64px;
+    background-color: var(--text-primary);
+    border-radius: var(--radius-sm);
+    position: relative;
+    padding: 6px;
+  }
+
+  .qr-box {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background-color: var(--surface);
+  }
+
+  .qr-box.top-left { top: 6px; left: 6px; }
+  .qr-box.top-right { top: 6px; right: 6px; }
+  .qr-box.bottom-left { bottom: 6px; left: 6px; }
+
+  .qr-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 0.4rem;
+  }
+
+  .map-active {
+    align-items: center;
+    padding: 0.5rem 0;
+  }
+
+  .active-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--emerald);
+    background-color: var(--emerald-subtle);
+    padding: 0.35rem 0.65rem;
+    border-radius: var(--radius-full);
+  }
+</style>

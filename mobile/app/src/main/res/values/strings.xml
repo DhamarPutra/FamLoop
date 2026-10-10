@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">FamLoop</string>
+    <string name="title_live_map">FamLoop Live Family Map</string>
+    <string name="title_qr_member">Hubungkan Perangkat</string>
+    <string name="title_qr_scanner">Scan QR Anggota Keluarga</string>
+    <string name="tracking_notification_title">FamLoop Aktif</string>
+    <string name="tracking_notification_text">Memperbarui lokasi keluarga di latar belakang...</string>
+</resources>

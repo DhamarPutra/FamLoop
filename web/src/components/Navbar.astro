@@ -1,0 +1,245 @@
+---
+// Navbar component with brand logo, nav links, theme toggle, and mobile menu
+---
+
+<header class="navbar-wrapper">
+  <div class="container navbar-container">
+    <a href="/" class="brand-logo" aria-label="FamLoop Beranda">
+      <div class="logo-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+      </div>
+      <span class="brand-name">FamLoop</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav" aria-label="Navigasi Utama">
+      <a href="#demo" class="nav-link">Simulasi Peta</a>
+      <a href="#keunggulan" class="nav-link">Keunggulan</a>
+      <a href="#cara-kerja" class="nav-link">Cara Kerja</a>
+      <a href="#privasi" class="nav-link">Privasi & Keamanan</a>
+      <a href="#faq" class="nav-link">Tanya Jawab</a>
+    </nav>
+
+    <div class="nav-actions">
+      <!-- Dark/Light Theme Toggle (R-34) -->
+      <button id="theme-toggle" class="theme-btn" aria-label="Ganti mode tampilan terang atau gelap" type="button">
+        <svg id="theme-icon-sun" class="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg id="theme-icon-moon" class="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+
+      <a href="#unduh" class="btn btn-primary nav-cta">
+        Pasang Aplikasi
+      </a>
+
+      <!-- Mobile Menu Hamburger (R-03) -->
+      <button id="mobile-menu-toggle" class="mobile-toggle" aria-label="Buka menu navigasi" aria-expanded="false" type="button">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div id="mobile-menu" class="mobile-menu" hidden>
+    <div class="mobile-menu-inner container">
+      <a href="#demo" class="mobile-nav-link">Simulasi Peta</a>
+      <a href="#keunggulan" class="mobile-nav-link">Keunggulan</a>
+      <a href="#cara-kerja" class="mobile-nav-link">Cara Kerja</a>
+      <a href="#privasi" class="mobile-nav-link">Privasi & Keamanan</a>
+      <a href="#faq" class="mobile-nav-link">Tanya Jawab</a>
+      <a href="#unduh" class="btn btn-primary mobile-cta">Pasang Aplikasi Sekarang</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .navbar-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--surface);
+    border-bottom: 1px solid var(--border-light);
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-weight: 800;
+    font-size: 1.35rem;
+    color: var(--text-primary);
+  }
+
+  .logo-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-md);
+    background-color: var(--primary);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+  }
+
+  .nav-link {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: color 0.15s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--primary);
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .theme-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    background-color: var(--surface-alt);
+    border: 1px solid var(--border-light);
+    transition: all 0.2s ease;
+  }
+
+  .theme-btn:hover {
+    color: var(--text-primary);
+    background-color: var(--surface-hover);
+  }
+
+  .mobile-toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    border-radius: var(--radius-md);
+    background-color: var(--surface-alt);
+  }
+
+  .mobile-menu {
+    border-top: 1px solid var(--border-light);
+    background-color: var(--surface);
+    padding: 1.25rem 0;
+  }
+
+  .mobile-menu-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .mobile-nav-link {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    padding: 0.5rem 0;
+  }
+
+  .mobile-cta {
+    margin-top: 0.5rem;
+  }
+
+  @media (max-width: 860px) {
+    .desktop-nav { display: none; }
+    .nav-cta { display: none; }
+    .mobile-toggle { display: flex; }
+  }
+</style>
+
+<script is:inline>
+  // Theme Toggle Logic
+  const themeToggle = document.getElementById('theme-toggle');
+  const sunIcon = document.getElementById('theme-icon-sun');
+  const moonIcon = document.getElementById('theme-icon-moon');
+
+  function updateThemeIcons(currentTheme) {
+    if (currentTheme === 'dark') {
+      if (sunIcon) sunIcon.style.display = 'block';
+      if (moonIcon) moonIcon.style.display = 'none';
+    } else {
+      if (sunIcon) sunIcon.style.display = 'none';
+      if (moonIcon) moonIcon.style.display = 'block';
+    }
+  }
+
+  const initialTheme = document.documentElement.getAttribute('data-theme') || 'light';
+  updateThemeIcons(initialTheme);
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      const target = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', target);
+      localStorage.setItem('famloop-theme', target);
+      updateThemeIcons(target);
+    });
+  }
+
+  // Mobile Menu Toggle Logic
+  const mobileToggle = document.getElementById('mobile-menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (mobileToggle && mobileMenu) {
+    mobileToggle.addEventListener('click', () => {
+      const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+      mobileToggle.setAttribute('aria-expanded', !isExpanded);
+      if (isExpanded) {
+        mobileMenu.hidden = true;
+      } else {
+        mobileMenu.hidden = false;
+      }
+    });
+
+    // Close menu when clicking nav link
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.hidden = true;
+        mobileToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>

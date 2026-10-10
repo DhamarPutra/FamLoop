@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.fujiwaracreative.famloop">
+
+    <!-- Izin Jaringan -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <!-- Izin Lokasi Presisi & Latar Belakang -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
+    <!-- Izin Foreground Service untuk Android 10+ dan 14+ -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Izin Kamera untuk Scan QR Orang Tua -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+
+    <!-- Izin Baterai & WakeLock -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="FamLoop"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.FamLoop"
+        android:usesCleartextTraffic="true">
+
+        <!-- Background Foreground Location Tracking Service -->
+        <service
+            android:name=".service.LocationForegroundService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+
+        <!-- Orang Tua: Peta Live Leaflet -->
+        <activity
+            android:name=".ui.parent.LiveMapActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Orang Tua: Scan QR Kamera -->
+        <activity
+            android:name=".ui.parent.QrScannerActivity"
+            android:exported="false" />
+
+        <!-- Anggota / Anak: Tampilkan QR Kode Pairing -->
+        <activity
+            android:name=".ui.member.MemberQrActivity"
+            android:exported="false" />
+
+        <!-- Anggota / Anak: Peta Live Keluarga Leaflet -->
+        <activity
+            android:name=".ui.member.MemberMapActivity"
+            android:exported="false" />
+
+    </application>
+</manifest>

@@ -1,0 +1,163 @@
+---
+// Features: Detailed capabilities designed specifically for family safety
+---
+
+<section class="section features-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge-tag">Fitur Inti</span>
+      <h2>Segala yang Dibutuhkan untuk Menjaga Keluarga</h2>
+      <p>Setiap fitur dirancang dengan pertimbangan praktis di lapangan, ramah anak, dan tidak membuat orang tua cemas berlebihan.</p>
+    </div>
+
+    <div class="features-grid">
+      <!-- Feature 1 -->
+      <div class="feature-card">
+        <div class="feature-icon-box primary">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+        </div>
+        <h3>Pairing Instan via Kode QR</h3>
+        <p>Hubungkan ponsel anak cukup dengan mengarahkan kamera orang tua ke layar ponsel anak. Tidak ada formulir pendaftaran panjang atau verifikasi SMS yang membingungkan.</p>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="feature-card">
+        <div class="feature-icon-box emerald">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+        </div>
+        <h3>Penyimpanan Offline Tangguh</h3>
+        <p>Saat anak melewati terowongan, basement parkir, atau area blank spot, ponsel tetap merekam posisi di basis data lokal dan mengirimkannya otomatis saat sinyal pulih.</p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="feature-card">
+        <div class="feature-icon-box amber">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="6" width="18" height="12" rx="2" ry="2"></rect>
+            <line x1="23" y1="13" x2="23" y2="11"></line>
+          </svg>
+        </div>
+        <h3>Indikator Baterai Real-Time</h3>
+        <p>Ketahui sisa baterai ponsel anak secara langsung dari peta. Orang tua dapat mengingatkan anak sebelum ponselnya kehabisan daya dan tidak bisa dihubungi.</p>
+      </div>
+
+      <!-- Feature 4 -->
+      <div class="feature-card">
+        <div class="feature-icon-box primary">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+            <line x1="9" y1="9" x2="9.01" y2="9"></line>
+            <line x1="15" y1="9" x2="15.01" y2="9"></line>
+          </svg>
+        </div>
+        <h3>Avatar Karakter Ramah Anak</h3>
+        <p>Tersedia 12 karakter hewan kartun ceria yang disukai anak, atau orang tua bisa mengunggah foto profil asli agar penanda di peta langsung mudah dikenali.</p>
+      </div>
+
+      <!-- Feature 5 -->
+      <div class="feature-card">
+        <div class="feature-icon-box emerald">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+          </svg>
+        </div>
+        <h3>Koneksi Lolos Blokir Firewall</h3>
+        <p>Menggunakan Server-Sent Events (SSE) yang berjalan di atas protokol web biasa, sehingga tidak akan terputus saat ponsel tersambung ke jaringan WiFi sekolah.</p>
+      </div>
+
+      <!-- Feature 6 -->
+      <div class="feature-card">
+        <div class="feature-icon-box amber">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+        </div>
+        <h3>Peta Privasi Tanpa Pelacak Iklan</h3>
+        <p>FamLoop tidak memasang SDK pelacak iklan komersial. Data pergerakan keluarga adalah rahasia pribadi Anda dan hanya bisa dilihat oleh anggota grup keluarga sendiri.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .features-section {
+    background-color: var(--surface);
+    border-top: 1px solid var(--border-light);
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 3.5rem auto;
+  }
+
+  .section-header h2 {
+    margin: 0.75rem 0;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+
+  .feature-card {
+    background-color: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s ease;
+  }
+
+  .feature-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .feature-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .feature-icon-box.primary {
+    background-color: var(--primary-subtle);
+    color: var(--primary);
+  }
+
+  .feature-icon-box.emerald {
+    background-color: var(--emerald-subtle);
+    color: var(--emerald);
+  }
+
+  .feature-icon-box.amber {
+    background-color: var(--amber-subtle);
+    color: var(--amber);
+  }
+
+  .feature-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .feature-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+</style>

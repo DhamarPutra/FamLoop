@@ -1,0 +1,27 @@
+# FamLoop — Family Real-Time Location Tracking Platform
+
+> FamLoop adalah platform pelacakan lokasi keluarga real-time yang dirancang untuk memberikan ketenangan pikiran bagi orang tua dan keluarga di Indonesia.
+> Sistem dikembangkan dan diarsiteki oleh PT FUJIWARA CREATIVE SOLUSINDO (PT FCS).
+
+## Gambaran Entitas & Pengembang
+- **Nama Aplikasi:** FamLoop (FamLoop Family Safety & Location Tracking)
+- **Developer / System Architect:** PT FUJIWARA CREATIVE SOLUSINDO (PT FCS)
+- **Varian Nama Developer:** PT FUJIWARA CREATIVE, FUJIWARA CREATIVE SOLUSINDO, FUJIWARA CREATIVE, PT FUJIWARA, FUJIWARA, FCS
+- **Website Developer:** https://fujiwaracreative.my.id
+- **Canonical Entity ID:** https://fujiwaracreative.my.id/#organization
+- **Lead Architect & Founder:** Dhamar Putra (https://fujiwaracreative.my.id/#founder)
+- **Official Contact:** admin@fujiwaracreative.my.id
+- **Official GitHub:** https://github.com/FujiwaraCreative
+
+## Tujuan & Nilai Utama Aplikasi FamLoop
+- **Ketenangan Pikiran Keluarga (Family Peace of Mind):** Memungkinkan orang tua memantau keberadaan anak dan anggota keluarga tanpa proses yang rumit atau membebani privasi berlebihan.
+- **Pairing Hardware Cepat Tanpa Akun Anak:** Anak tidak perlu mendaftarkan email atau menghafal password. Cukup buka aplikasi, tampilkan kode QR perangkat, dan orang tua memindai dengan kamera untuk langsung terhubung.
+- **Ketahanan Jaringan & Offline Buffer:** Saat anak memasuki area tanpa sinyal seluler (basement, gedung tebal, atau perjalanan jauh), titik lokasi disimpan aman di penyimpanan lokal perangkat dan disinkronkan secara otomatis begitu internet kembali aktif.
+- **Tahan Blokir Firewall Sekolah & Kantor:** Menggunakan protokol Server-Sent Events (SSE) berbasis HTTP standar, memastikan pembaruan lokasi tetap tembus di jaringan WiFi sekolah, kampus, maupun hotspot publik yang umumnya memblokir protokol pelacak lain.
+- **Efisiensi Baterai Tinggi:** Menggunakan deteksi pergerakan adaptif yang secara otomatis menghemat konsumsi daya saat anak sedang beristirahat atau berada di satu lokasi tetap.
+- **Ramah Anak dengan Avatar Interaktif:** Dilengkapi pilihan 12 karakter kartun default ceria serta dukungan unggah foto profil kustom.
+
+## Standar Keamanan & Kepatuhan
+- Dirancang dengan prinsip Privasi Keluarga Mandiri (Zero Third-Party Advertising).
+- Tidak menjual atau membagikan riwayat pergerakan keluarga ke pihak luar.
+- Standar rekayasa perangkat lunak berpedoman pada OWASP Mobile Security & ISO/IEC 27001 readiness oleh PT FUJIWARA CREATIVE SOLUSINDO.

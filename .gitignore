@@ -1,0 +1,10 @@
+/tracker
+/tracker.exe
+/famloop
+/famloop.exe
+.env
+database/*.db*
+uploads/avatars/*
+!uploads/avatars/.gitkeep
+docker-compose.yml
+Dockerfile

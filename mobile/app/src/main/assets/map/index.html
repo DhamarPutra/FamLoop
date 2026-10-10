@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>FamLoop Live Map</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #F8FAFC;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+        /* Custom Avatar Marker Bubble */
+        .avatar-bubble {
+            position: relative;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: #FFFFFF;
+            border: 3px solid #3B82F6;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+        }
+        .avatar-bubble:hover {
+            transform: scale(1.1);
+        }
+        .avatar-img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: #E2E8F0;
+        }
+        .battery-badge {
+            position: absolute;
+            bottom: -4px;
+            right: -4px;
+            background: #10B981;
+            color: #FFFFFF;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 1px 5px;
+            border-radius: 8px;
+            border: 2px solid #FFFFFF;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        .battery-low {
+            background: #EF4444;
+        }
+        .member-label {
+            position: absolute;
+            top: -22px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 23, 42, 0.85);
+            color: #FFFFFF;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 12px;
+            white-space: nowrap;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .status-dot {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #10B981;
+            border: 2px solid #FFFFFF;
+        }
+        .status-offline {
+            background: #94A3B8;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Inisialisasi Peta Leaflet dengan OpenStreetMap Tiles (100% Gratis)
+        var map = L.map('map', {
+            zoomControl: false,
+            attributionControl: false
+        }).setView([-6.2088, 106.8456], 15);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19
+        }).addTo(map);
+
+        L.control.zoom({ position: 'bottomright' }).addTo(map);
+
+        // Kumpulan marker per deviceId
+        var memberMarkers = {};
+
+        // Fungsi yang dipanggil dari Android Kotlin
+        function updateMemberMarker(deviceId, name, lat, lng, avatarUrl, battery, isOnline) {
+            lat = parseFloat(lat);
+            lng = parseFloat(lng);
+            if (isNaN(lat) || isNaN(lng) || lat === 0 || lng === 0) return;
+
+            // Default fallback icon jika avatar kosong atau berupa preset karakter
+            var finalAvatarSrc = avatarUrl;
+            if (!avatarUrl || avatarUrl === '' || avatarUrl.startsWith('char_')) {
+                finalAvatarSrc = 'https://api.dicebear.com/7.x/bottts/svg?seed=' + encodeURIComponent(deviceId);
+            }
+
+            var batteryClass = battery <= 20 ? 'battery-low' : '';
+            var statusClass = isOnline ? '' : 'status-offline';
+
+            var iconHtml = `
+                <div class="avatar-bubble">
+                    <span class="member-label">${name}</span>
+                    <span class="status-dot ${statusClass}"></span>
+                    <img class="avatar-img" src="${finalAvatarSrc}" alt="${name}" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=fam';" />
+                    <span class="battery-badge ${batteryClass}">${battery}%</span>
+                </div>
+            `;
+
+            var customIcon = L.divIcon({
+                html: iconHtml,
+                className: 'custom-div-icon',
+                iconSize: [52, 52],
+                iconAnchor: [26, 26]
+            });
+
+            if (memberMarkers[deviceId]) {
+                // Perbarui posisi dan ikon
+                memberMarkers[deviceId].setLatLng([lat, lng]);
+                memberMarkers[deviceId].setIcon(customIcon);
+            } else {
+                // Buat marker baru
+                var marker = L.marker([lat, lng], { icon: customIcon }).addTo(map);
+                marker.bindPopup(`<b>${name}</b><br>Baterai: ${battery}%`);
+                memberMarkers[deviceId] = marker;
+            }
+        }
+
+        function centerToMember(lat, lng) {
+            lat = parseFloat(lat);
+            lng = parseFloat(lng);
+            if (!isNaN(lat) && !isNaN(lng)) {
+                map.flyTo([lat, lng], 16, { animate: true, duration: 1.0 });
+            }
+        }
+
+        function fitAllMembers() {
+            var group = new L.featureGroup(Object.values(memberMarkers));
+            if (Object.keys(memberMarkers).length > 0) {
+                map.fitBounds(group.getBounds().pad(0.2));
+            }
+        }
+    </script>
+</body>
+</html>
