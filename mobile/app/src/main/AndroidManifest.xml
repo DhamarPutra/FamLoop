@@ -41,15 +41,25 @@
             android:exported="false"
             android:foregroundServiceType="location" />
 
-        <!-- Orang Tua: Peta Live Leaflet -->
+        <!-- Launcher: Pemilih Peran & Navigasi Awal -->
         <activity
-            android:name=".ui.parent.LiveMapActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Orang Tua: Login / Register / Buat Grup -->
+        <activity
+            android:name=".ui.parent.ParentAuthActivity"
+            android:exported="false" />
+
+        <!-- Orang Tua: Peta Live Leaflet -->
+        <activity
+            android:name=".ui.parent.LiveMapActivity"
+            android:exported="false" />
 
         <!-- Orang Tua: Scan QR Kamera -->
         <activity

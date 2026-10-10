@@ -1,5 +1,6 @@
 package com.fujiwaracreative.famloop.data.remote
 
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
@@ -15,11 +16,26 @@ object NetworkClient {
     // Production API endpoint FamLoop
     var BASE_URL = "https://famloop.my.id/"
 
+    @Volatile
+    var authToken: String? = null
+
+    private val authInterceptor = Interceptor { chain ->
+        val original = chain.request()
+        val builder = original.newBuilder()
+        authToken?.let { token ->
+            if (token.isNotEmpty()) {
+                builder.header("Authorization", "Bearer $token")
+            }
+        }
+        chain.proceed(builder.build())
+    }
+
     private val okHttpClient by lazy {
         OkHttpClient.Builder()
             .connectTimeout(15, TimeUnit.SECONDS)
             .readTimeout(0, TimeUnit.SECONDS) // Read timeout 0 untuk SSE persistent connection
             .writeTimeout(30, TimeUnit.SECONDS)
+            .addInterceptor(authInterceptor)
             .addInterceptor(HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY
             })
@@ -38,12 +54,17 @@ object NetworkClient {
     // Membuka stream SSE Server-Sent Events real-time ke endpoint /api/v1/groups/:id/sse
     fun createGroupEventSource(groupId: String, listener: EventSourceListener): EventSource {
         val sseUrl = "${BASE_URL}api/v1/groups/$groupId/sse"
-        val request = Request.Builder()
+        val requestBuilder = Request.Builder()
             .url(sseUrl)
             .header("Accept", "text/event-stream")
-            .build()
+
+        authToken?.let { token ->
+            if (token.isNotEmpty()) {
+                requestBuilder.header("Authorization", "Bearer $token")
+            }
+        }
 
         val factory = EventSources.createFactory(okHttpClient)
-        return factory.newEventSource(request, listener)
+        return factory.newEventSource(requestBuilder.build(), listener)
     }
 }

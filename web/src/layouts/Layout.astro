@@ -1,14 +1,12 @@
 ---
-import '../styles/global.css';
-
 interface Props {
   title?: string;
   description?: string;
 }
 
 const {
-  title = "FamLoop: Pelindung Lokasi Keluarga Real-Time Tanpa Ribet",
-  description = "Aplikasi pelacak lokasi keluarga yang aman, hemat baterai, dan tahan firewall. Hubungkan perangkat anak instan via scan QR tanpa perlu akun email."
+  title = "FamLoop: Sovereign Real-Time Family Location Tracking",
+  description = "Aplikasi pelacak lokasi keluarga real-time yang mandiri, aman, hemat baterai, dan tahan firewall. Hubungkan perangkat anak instan via scan QR tanpa perlu akun email."
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://famloop.my.id");
@@ -68,7 +66,7 @@ const schemaOrgJson = {
 ---
 
 <!DOCTYPE html>
-<html lang="id">
+<html class="dark" lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -98,24 +96,99 @@ const schemaOrgJson = {
     <meta name="publisher" content="PT FUJIWARA CREATIVE SOLUSINDO" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
 
-    <!-- Theme Mode Prevention of FOUC -->
-    <script is:inline>
-      (function() {
-        const storedTheme = localStorage.getItem('famloop-theme');
-        if (storedTheme) {
-          document.documentElement.setAttribute('data-theme', storedTheme);
-        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          document.documentElement.setAttribute('data-theme', 'dark');
-        } else {
-          document.documentElement.setAttribute('data-theme', 'light');
+    <!-- Google Fonts & Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CSS CDN & Glacier Design Tokens from Google Stitch -->
+    <script is:inline src="https://cdn.tailwindcss.com"></script>
+    <script is:inline id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-primary-fixed": "#001f2e",
+              "on-error": "#1a0000",
+              "surface-container": "#141c2e",
+              "error": "#ff6b6b",
+              "on-tertiary-fixed-variant": "#4d2a73",
+              "on-surface-variant": "#a0b4c4",
+              "on-secondary-fixed": "#0d1f2b",
+              "tertiary": "#c8a0f0",
+              "on-primary-fixed-variant": "#004d73",
+              "background": "#0a0e1a",
+              "primary-fixed": "#c8eaff",
+              "on-primary-container": "#c8eaff",
+              "primary-container": "#0e4d6e",
+              "secondary-fixed": "#c0d8e8",
+              "secondary": "#88b4cc",
+              "surface-bright": "#1a2438",
+              "surface-container-highest": "#202c42",
+              "surface-container-lowest": "#0a0e1a",
+              "outline": "#4a6070",
+              "secondary-fixed-dim": "#88b4cc",
+              "inverse-on-surface": "#0a0e1a",
+              "on-surface": "#e0e8f0",
+              "on-secondary": "#001f2e",
+              "on-secondary-fixed-variant": "#2a4a5e",
+              "primary": "#7dd3fc",
+              "on-secondary-container": "#c0d8e8",
+              "on-tertiary-fixed": "#1a002e",
+              "on-background": "#e0e8f0",
+              "inverse-primary": "#0a4c6e",
+              "on-error-container": "#ffb3b3",
+              "inverse-surface": "#e0e8f0",
+              "surface-dim": "#0f1524",
+              "outline-variant": "#2a3a48",
+              "error-container": "#3d1414",
+              "surface-tint": "#7dd3fc",
+              "on-tertiary": "#1a002e",
+              "surface-variant": "#1a2438",
+              "tertiary-container": "#3d2060",
+              "on-tertiary-container": "#e8d0ff",
+              "secondary-container": "#1a3a4e",
+              "primary-fixed-dim": "#7dd3fc",
+              "surface": "#0f1524",
+              "surface-container-high": "#1a2438",
+              "on-primary": "#001f2e",
+              "tertiary-fixed": "#e8d0ff",
+              "surface-container-low": "#111828",
+              "tertiary-fixed-dim": "#c8a0f0"
+            },
+            borderRadius: {
+              "DEFAULT": "0.5rem",
+              "lg": "1rem",
+              "xl": "1.5rem",
+              "full": "9999px"
+            },
+            fontFamily: {
+              headline: ["Inter", "sans-serif"],
+              display: ["Inter", "sans-serif"],
+              body: ["Inter", "sans-serif"],
+              label: ["Inter", "sans-serif"]
+            }
+          }
         }
-      })();
+      };
     </script>
+
+    <style is:inline>
+      html, body {
+        margin: 0;
+        padding: 0;
+        scroll-behavior: smooth;
+      }
+      ::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
 
     <!-- Schema.org JSON-LD Authorship & Application Graph -->
     <script type="application/ld+json" set:html={JSON.stringify(schemaOrgJson)} />
   </head>
-  <body>
+  <body class="bg-background text-on-surface font-body min-h-screen relative overflow-x-hidden">
     <slot />
   </body>
 </html>

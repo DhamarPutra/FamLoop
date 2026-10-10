@@ -1,31 +1,596 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import Hero from '../components/Hero.astro';
-import LiveDemoMap from '../components/LiveDemoMap.astro';
-import ProblemSolution from '../components/ProblemSolution.astro';
-import Features from '../components/Features.astro';
-import HowItWorks from '../components/HowItWorks.astro';
-import PrivacySecurity from '../components/PrivacySecurity.astro';
-import Faq from '../components/Faq.astro';
-import CtaDownload from '../components/CtaDownload.astro';
-import Footer from '../components/Footer.astro';
 ---
 
 <Layout
-  title="FamLoop: Aplikasi Pelindung Lokasi Keluarga Real-Time Indonesia"
-  description="FamLoop memberikan ketenangan pikiran bagi orang tua untuk memantau keberadaan anak secara langsung. Tahan firewall, hemat baterai, dan dilengkapi buffer offline saat sinyal hilang."
+  title="FamLoop: Sovereign Real-Time Family Location Tracking Platform"
+  description="FamLoop memberikan ketenangan pikiran bagi orang tua dan keluarga dengan pelacakan lokasi real-time mandiri, tanpa Google Maps API key, hemat baterai, dan tahan firewall via Server-Sent Events."
 >
-  <Navbar />
-  <main id="main-content">
-    <Hero />
-    <LiveDemoMap />
-    <ProblemSolution />
-    <Features />
-    <HowItWorks />
-    <PrivacySecurity />
-    <Faq />
-    <CtaDownload />
+  <!-- Background Atmospheric Ambient Glows -->
+  <div class="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+    <div class="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-primary/10 blur-[128px]"></div>
+    <div class="absolute top-1/3 -right-40 w-[30rem] h-[30rem] rounded-full bg-tertiary/10 blur-[140px]"></div>
+    <div class="absolute bottom-10 left-1/4 w-[28rem] h-[28rem] rounded-full bg-primary/5 blur-[120px]"></div>
+  </div>
+
+  <!-- Header / Navigation -->
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 pt-4">
+      <div class="h-16 px-6 rounded-2xl bg-surface/60 backdrop-blur-xl shadow-[0_4px_30px_rgba(125,211,252,0.05)] flex items-center justify-between border border-white/5">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-primary/20 backdrop-blur-md flex items-center justify-center shadow-[0_0_20px_rgba(125,211,252,0.35)]">
+            <span class="material-symbols-outlined text-primary text-[20px]">all_inclusive</span>
+          </div>
+          <span class="text-lg font-headline font-bold tracking-tight text-on-surface drop-shadow-[0_0_12px_rgba(125,211,252,0.6)]">FamLoop</span>
+        </div>
+        <nav class="hidden md:flex items-center gap-1 p-1 rounded-xl bg-surface-container-low/40 backdrop-blur-md">
+          <a class="px-3.5 py-1.5 rounded-lg text-sm font-label text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/50 transition-colors duration-150" href="#features">Features</a>
+          <a class="px-3.5 py-1.5 rounded-lg text-sm font-label text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/50 transition-colors duration-150" href="#architecture">Architecture</a>
+          <a class="px-3.5 py-1.5 rounded-lg text-sm font-label text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/50 transition-colors duration-150" href="#self-host">Self-Hosting</a>
+          <a class="px-3.5 py-1.5 rounded-lg text-sm font-label text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/50 transition-colors duration-150" href="https://github.com/FujiwaraCreative" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </nav>
+        <div class="flex items-center gap-4">
+          <a class="inline-flex items-center justify-center px-4 py-2 rounded-xl text-xs font-label uppercase tracking-wider font-semibold text-on-primary bg-primary shadow-[0_0_24px_rgba(125,211,252,0.4)] hover:shadow-[0_0_32px_rgba(125,211,252,0.65)] hover:bg-primary-fixed-dim transition-all duration-200" href="/app-release.apk" download>
+            Download APK
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="relative z-10 w-full pt-20 bg-transparent min-h-screen">
+    <div class="flex flex-col w-full">
+
+      <!-- SECTION 1: HERO SECTION -->
+      <section class="relative w-full overflow-hidden px-4 sm:px-6 lg:px-12 pt-8 pb-24 md:pt-16 md:pb-32">
+        <div class="pointer-events-none absolute -top-32 left-1/2 -translate-x-1/2 w-[720px] h-[480px] bg-gradient-to-b from-primary/20 via-primary-container/10 to-transparent blur-[140px] rounded-full"></div>
+        <div class="pointer-events-none absolute top-48 -right-36 w-96 h-96 bg-tertiary/15 blur-[130px] rounded-full"></div>
+        <div class="pointer-events-none absolute top-72 -left-24 w-80 h-80 bg-primary/10 blur-[110px] rounded-full"></div>
+
+        <div class="max-w-7xl mx-auto flex flex-col items-center text-center">
+          <!-- Live Pill Badge -->
+          <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-surface-container/70 backdrop-blur-xl shadow-lg shadow-primary/5 mb-8 hover:bg-surface-container-high/80 transition-all duration-300 border border-white/5">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+            </span>
+            <span class="text-xs sm:text-sm font-label font-medium tracking-wide text-on-surface">FamLoop v1.0 Production Ready</span>
+            <span class="text-on-surface-variant font-light text-xs">•</span>
+            <span class="text-xs sm:text-sm font-label text-primary font-medium">Ultra-low Latency Private Family Sync</span>
+          </div>
+
+          <!-- Core Headline -->
+          <h1 class="text-4xl sm:text-6xl lg:text-7xl font-headline font-extrabold tracking-tight text-on-surface max-w-5xl leading-[1.08] mb-6">
+            Real-Time Family Connectivity <span class="bg-gradient-to-r from-primary via-primary-fixed-dim to-tertiary bg-clip-text text-transparent">Without Giving Up Your Privacy</span>
+          </h1>
+
+          <!-- Subtitle -->
+          <p class="max-w-3xl text-base sm:text-xl font-body text-on-surface-variant leading-relaxed mb-10">
+            Platform pelacakan lokasi keluarga mandiri, hemat baterai, dan tahan blokir firewall. Menggabungkan backend Go Fiber berlatensi sub-12ms, SQLite WAL mode, dan aplikasi Android Kotlin Native dengan pairing QR instan tanpa akun anak.
+          </p>
+
+          <!-- Dual CTA Buttons -->
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-12">
+            <a class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl text-sm font-label font-bold tracking-wide uppercase text-on-primary bg-primary hover:bg-primary-fixed-dim shadow-[0_0_36px_rgba(125,211,252,0.45)] hover:shadow-[0_0_50px_rgba(125,211,252,0.7)] transition-all duration-300 group" href="/app-release.apk" download>
+              <span class="material-symbols-outlined text-[20px] transition-transform group-hover:rotate-12">download</span>
+              <span>Download Release APK (~27MB)</span>
+            </a>
+            <div class="relative group w-full sm:w-auto">
+              <a class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-4 rounded-xl text-sm font-label font-medium text-on-surface bg-surface-container/80 hover:bg-surface-container-high/90 backdrop-blur-xl shadow-lg transition-all duration-200 border border-white/5" href="#self-host">
+                <span class="material-symbols-outlined text-[20px] text-primary">dns</span>
+                <span>Deploy Self-Hosted Node</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Live Metric Chips -->
+          <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-6 mb-16 text-xs sm:text-sm font-label text-on-surface-variant">
+            <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-surface-container-low/60 backdrop-blur-md border border-white/5">
+              <span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+              <span><strong class="text-on-surface font-semibold">100%</strong> Bebas Google Maps API Key</span>
+            </div>
+            <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-surface-container-low/60 backdrop-blur-md border border-white/5">
+              <span class="material-symbols-outlined text-emerald-400 text-[18px]">speed</span>
+              <span><strong class="text-on-surface font-semibold">&lt;12ms</strong> SSE Event Stream Sync</span>
+            </div>
+            <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-surface-container-low/60 backdrop-blur-md border border-white/5">
+              <span class="material-symbols-outlined text-tertiary text-[18px]">lock</span>
+              <span><strong class="text-on-surface font-semibold">Zero</strong> Iklan & Pelacak Pihak Ketiga</span>
+            </div>
+          </div>
+
+          <!-- Hero Visual: 3D Perspective Device Mockup with Active Map UI -->
+          <div class="relative w-full max-w-4xl [perspective:1400px]">
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/30 via-tertiary/15 to-transparent blur-3xl transform scale-95 opacity-70"></div>
+            <div class="relative mx-auto w-full max-w-2xl [transform:rotateX(14deg)_rotateY(0deg)_scale(0.96)] sm:[transform:rotateX(16deg)_rotateY(-2deg)] hover:[transform:rotateX(6deg)_rotateY(0deg)_scale(1)] transition-all duration-700 ease-out">
+              <div class="rounded-[2.5rem] bg-surface-container-lowest/90 backdrop-blur-2xl p-4 sm:p-5 shadow-[0_30px_90px_rgba(0,0,0,0.8),0_0_60px_rgba(125,211,252,0.15)] ring-1 ring-primary/20">
+                <div class="flex items-center justify-between px-6 pt-1 pb-3 text-xs font-label text-on-surface-variant">
+                  <span>FamLoop Live Telemetry</span>
+                  <div class="w-20 h-4 rounded-full bg-surface-container-highest flex items-center justify-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-primary/80"></span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-surface-container"></span>
+                  </div>
+                  <div class="flex items-center gap-1.5 text-[14px]">
+                    <span class="material-symbols-outlined text-[15px]">wifi</span>
+                    <span class="material-symbols-outlined text-[15px]">battery_charging_full</span>
+                  </div>
+                </div>
+
+                <!-- Simulated Map Canvas Container -->
+                <div class="relative w-full h-[360px] sm:h-[420px] rounded-3xl overflow-hidden bg-surface-dim shadow-inner border border-white/5">
+                  <div class="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-40"></div>
+                  <!-- Vector Roads & Grids -->
+                  <svg class="absolute inset-0 w-full h-full opacity-25" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M -50,180 Q 200,120 400,240 T 800,200" fill="none" stroke="#7dd3fc" stroke-width="2.5"></path>
+                    <path d="M 220,-20 Q 250,200 320,440" fill="none" stroke="#7dd3fc" stroke-width="2"></path>
+                    <path d="M 120,400 Q 300,320 600,350" fill="none" stroke="#c8a0f0" stroke-dasharray="4,4" stroke-width="1.5"></path>
+                  </svg>
+
+                  <!-- Central Radar Geofence Sweep -->
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 pointer-events-none">
+                    <div class="absolute inset-0 rounded-full border border-primary/20 animate-ping opacity-30"></div>
+                    <div class="absolute inset-8 rounded-full border border-primary/30"></div>
+                    <div class="absolute inset-20 rounded-full bg-primary/5 border border-primary/40"></div>
+                  </div>
+
+                  <!-- Map Node 1: Maya (School Zone) -->
+                  <div class="absolute top-1/3 left-1/4 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                    <div class="relative">
+                      <span class="absolute -inset-1 rounded-full bg-emerald-400 blur-sm opacity-75 animate-pulse"></span>
+                      <div class="relative w-11 h-11 rounded-full bg-surface-container-highest p-0.5 shadow-lg border border-emerald-400">
+                        <div class="w-full h-full rounded-full bg-gradient-to-tr from-emerald-500 to-primary flex items-center justify-center font-bold text-xs text-on-primary">M</div>
+                      </div>
+                      <div class="absolute -bottom-1 -right-1 px-1 py-0.2 rounded-full bg-surface-container-lowest text-[9px] font-label font-semibold text-emerald-400 flex items-center shadow border border-white/10">
+                        89%
+                      </div>
+                    </div>
+                    <div class="mt-2 px-3 py-1 rounded-full bg-surface-container-high/90 backdrop-blur-md shadow-lg flex items-center gap-1.5 border border-white/5">
+                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                      <span class="text-xs font-label font-medium text-on-surface">Maya • Sekolah (Aman)</span>
+                    </div>
+                  </div>
+
+                  <!-- Map Node 2: Ayah (Transit) -->
+                  <div class="absolute top-2/3 right-1/4 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                    <div class="relative">
+                      <div class="w-11 h-11 rounded-full bg-surface-container-highest p-0.5 shadow-lg border border-primary">
+                        <div class="w-full h-full rounded-full bg-gradient-to-tr from-primary to-primary-container flex items-center justify-center font-bold text-xs text-on-primary">A</div>
+                      </div>
+                      <div class="absolute -bottom-1 -right-1 px-1 py-0.2 rounded-full bg-surface-container-lowest text-[9px] font-label font-semibold text-primary flex items-center shadow border border-white/10">
+                        64%
+                      </div>
+                    </div>
+                    <div class="mt-2 px-3 py-1 rounded-full bg-surface-container-high/90 backdrop-blur-md shadow-lg flex items-center gap-1.5 border border-white/5">
+                      <span class="material-symbols-outlined text-[13px] text-primary">directions_car</span>
+                      <span class="text-xs font-label font-medium text-on-surface">Ayah • Perjalanan (42 km/h)</span>
+                    </div>
+                  </div>
+
+                  <!-- Geofence Trigger Toast inside Screen -->
+                  <div class="absolute bottom-4 left-4 right-4 p-3.5 rounded-2xl bg-surface-container-highest/90 backdrop-blur-xl shadow-2xl flex items-center justify-between gap-3 border border-white/10">
+                    <div class="flex items-center gap-3 min-w-0">
+                      <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-[20px]">verified</span>
+                      </div>
+                      <div class="text-left min-w-0">
+                        <div class="text-xs font-label font-semibold text-on-surface flex items-center gap-2">
+                          <span>Zona Terdeteksi: Sekolah</span>
+                          <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 uppercase tracking-wider font-bold">Tiba</span>
+                        </div>
+                        <p class="text-[11px] font-body text-on-surface-variant truncate">Maya tiba di zona sekolah dengan aman</p>
+                      </div>
+                    </div>
+                    <span class="text-[11px] font-label font-mono text-primary shrink-0">&lt;12ms SSE</span>
+                  </div>
+                </div>
+
+                <div class="w-32 h-1 rounded-full bg-on-surface/20 mx-auto mt-3"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: BENTO GRID ARCHITECTURE -->
+      <section class="relative w-full px-4 sm:px-6 lg:px-12 py-20 bg-surface-container-lowest/40" id="features">
+        <div class="max-w-7xl mx-auto">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div>
+              <div class="inline-flex items-center gap-2 text-xs font-label uppercase tracking-widest text-primary font-semibold mb-3">
+                <span class="material-symbols-outlined text-[16px]">grid_view</span>
+                Arsitektur Unggulan
+              </div>
+              <h2 class="text-3xl sm:text-5xl font-headline font-bold text-on-surface tracking-tight">
+                Dirancang untuk Ketahanan. Dibuat untuk Kecepatan.
+              </h2>
+            </div>
+            <p class="max-w-md text-sm sm:text-base font-body text-on-surface-variant leading-relaxed">
+              Bebas biaya lisensi per-peta, tanpa pelacakan data komersial, dan dibangun dengan protokol streaming tahan firewall.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Cell 1: Large 2-col span: Radar Geofence -->
+            <div class="md:col-span-2 rounded-3xl bg-surface-container/60 backdrop-blur-xl p-6 sm:p-8 shadow-xl relative overflow-hidden flex flex-col justify-between group hover:bg-surface-container/80 transition-all duration-300 border border-white/5">
+              <div class="relative z-10">
+                <div class="flex items-center justify-between mb-4">
+                  <div class="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[26px]">radar</span>
+                  </div>
+                  <span class="text-xs font-mono font-medium text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full">REALTIME SSE STREAM</span>
+                </div>
+                <h3 class="text-2xl font-headline font-bold text-on-surface mb-2">Pembaruan Lokasi Real-Time Sub-Detik</h3>
+                <p class="text-sm font-body text-on-surface-variant max-w-xl mb-6">
+                  Server-Sent Events (SSE) mengirimkan perubahan koordinat seketika ke seluruh perangkat orang tua tanpa beban polling berulang yang menguras kuota dan baterai.
+                </p>
+              </div>
+
+              <!-- Radar Visual Simulation Component -->
+              <div class="relative w-full h-52 sm:h-64 rounded-2xl bg-surface-dim/80 overflow-hidden flex items-center justify-center p-4 border border-white/5">
+                <div class="relative w-48 h-48 sm:w-56 sm:h-56 rounded-full border border-primary/20 flex items-center justify-center">
+                  <div class="absolute inset-4 rounded-full border border-primary/10"></div>
+                  <div class="absolute inset-10 rounded-full border border-primary/10"></div>
+                  <div class="absolute inset-0 rounded-full animate-spin [animation-duration:4s] [animation-timing-function:linear] bg-gradient-to-tr from-transparent via-transparent to-primary/30"></div>
+                  <div class="absolute top-6 right-10 flex items-center gap-1.5 px-2 py-0.5 rounded bg-surface-container-high/90 text-[10px] font-mono text-primary shadow">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+                    <span>Zona Rumah (Aman)</span>
+                  </div>
+                  <div class="absolute bottom-8 left-6 flex items-center gap-1.5 px-2 py-0.5 rounded bg-surface-container-high/90 text-[10px] font-mono text-secondary shadow">
+                    <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                    <span>Zona Sekolah (Aktif)</span>
+                  </div>
+                </div>
+
+                <!-- Event Stream Log -->
+                <div class="absolute right-4 top-4 bottom-4 w-44 sm:w-56 rounded-xl bg-surface-container-highest/80 backdrop-blur-md p-3 flex flex-col justify-between text-[11px] font-mono hidden sm:flex border border-white/5">
+                  <div class="text-[10px] font-label font-bold text-on-surface-variant uppercase tracking-wider mb-1">Live SSE Event Hub</div>
+                  <div class="space-y-2 text-on-surface">
+                    <div class="p-1.5 rounded bg-surface-container-low/60 flex items-center justify-between">
+                      <span class="text-emerald-400">LocationUpdated</span>
+                      <span class="text-on-surface-variant text-[10px]">6ms</span>
+                    </div>
+                    <div class="p-1.5 rounded bg-surface-container-low/60 flex items-center justify-between">
+                      <span class="text-primary">MemberJoined</span>
+                      <span class="text-on-surface-variant text-[10px]">12ms</span>
+                    </div>
+                    <div class="p-1.5 rounded bg-surface-container-low/60 flex items-center justify-between">
+                      <span class="text-tertiary">AvatarUpdated</span>
+                      <span class="text-on-surface-variant text-[10px]">4ms</span>
+                    </div>
+                  </div>
+                  <div class="text-[9px] text-emerald-400 flex items-center gap-1 pt-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                    <span>SSE Hub: 0 Backlog</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cell 2: Hardware QR Pairing -->
+            <div class="rounded-3xl bg-surface-container/60 backdrop-blur-xl p-6 sm:p-8 shadow-xl flex flex-col justify-between group hover:bg-surface-container/80 transition-all duration-300 border border-white/5">
+              <div>
+                <div class="w-12 h-12 rounded-2xl bg-tertiary/10 text-tertiary flex items-center justify-center mb-6">
+                  <span class="material-symbols-outlined text-[26px]">qr_code_scanner</span>
+                </div>
+                <h3 class="text-xl font-headline font-bold text-on-surface mb-2">Hardware QR Pairing Instan</h3>
+                <p class="text-sm font-body text-on-surface-variant mb-6 leading-relaxed">
+                  Anak tidak perlu mendaftar email atau menghafal kata sandi. Cukup buka aplikasi di HP anak, tampilkan QR kode perangkat, dan scan via kamera orang tua.
+                </p>
+              </div>
+              <div class="p-4 rounded-2xl bg-surface-dim/80 font-mono text-xs text-on-surface space-y-2 border border-white/5">
+                <div class="flex items-center justify-between text-on-surface-variant text-[10px]">
+                  <span>IDENTIFIKASI PERANGKAT</span>
+                  <span class="text-tertiary">UUID Hardware</span>
+                </div>
+                <div class="truncate text-primary">CameraX + ML Kit Scanner</div>
+                <div class="text-[11px] text-emerald-400 flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-[14px]">check_circle</span>
+                  Terhubung dalam 2 Detik
+                </div>
+              </div>
+            </div>
+
+            <!-- Cell 3: Offline-First Buffer -->
+            <div class="rounded-3xl bg-surface-container/60 backdrop-blur-xl p-6 sm:p-8 shadow-xl flex flex-col justify-between group hover:bg-surface-container/80 transition-all duration-300 border border-white/5">
+              <div>
+                <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-6">
+                  <span class="material-symbols-outlined text-[26px]">cloud_sync</span>
+                </div>
+                <h3 class="text-xl font-headline font-bold text-on-surface mb-2">Offline Room Buffer & Auto-Sync</h3>
+                <p class="text-sm font-body text-on-surface-variant mb-6 leading-relaxed">
+                  Saat berada di area tanpa sinyal, koordinat disimpan otomatis di Room SQLite lokal. Begitu internet kembali tersambung, WorkManager langsung mengunggahnya secara batch tanpa duplikasi.
+                </p>
+              </div>
+              <div class="p-4 rounded-2xl bg-surface-dim/80 space-y-3 border border-white/5">
+                <div class="flex items-center justify-between text-xs font-label">
+                  <span class="text-on-surface-variant">Konsumsi Baterai Harian</span>
+                  <span class="text-emerald-400 font-bold font-mono">&lt;2.4% (FamLoop)</span>
+                </div>
+                <div class="w-full h-2 rounded-full bg-surface-container-high overflow-hidden">
+                  <div class="h-full bg-emerald-400 rounded-full w-[15%]"></div>
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-on-surface-variant">
+                  <span>Pelacak Biasa (WebSocket/Polling)</span>
+                  <span class="text-error font-mono">&gt;18% / hari</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cell 4: Pure Go Backend -->
+            <div class="rounded-3xl bg-surface-container/60 backdrop-blur-xl p-6 sm:p-8 shadow-xl flex flex-col justify-between group hover:bg-surface-container/80 transition-all duration-300 border border-white/5">
+              <div>
+                <div class="w-12 h-12 rounded-2xl bg-primary-container/30 text-primary flex items-center justify-center mb-6">
+                  <span class="material-symbols-outlined text-[26px]">terminal</span>
+                </div>
+                <h3 class="text-xl font-headline font-bold text-on-surface mb-2">Backend Go (Fiber v2) + SQLite WAL</h3>
+                <p class="text-sm font-body text-on-surface-variant mb-6 leading-relaxed">
+                  Layanan monolitik ultra-ringan berbasis Go 1.24 dengan driver SQLite modernc (tanpa toolchain CGO). Konsumsi memori hanya ~35MB RAM.
+                </p>
+              </div>
+              <div class="flex items-center gap-2 p-3 rounded-2xl bg-surface-dim/80 text-on-surface text-xs font-mono border border-white/5">
+                <span class="text-emerald-400">PRAGMA journal_mode = WAL;</span>
+              </div>
+            </div>
+
+            <!-- Cell 5: Custom & Cartoon Avatars -->
+            <div class="rounded-3xl bg-surface-container/60 backdrop-blur-xl p-6 sm:p-8 shadow-xl flex flex-col justify-between group hover:bg-surface-container/80 transition-all duration-300 border border-white/5">
+              <div>
+                <div class="w-12 h-12 rounded-2xl bg-tertiary/10 text-tertiary flex items-center justify-center mb-6">
+                  <span class="material-symbols-outlined text-[26px]">face</span>
+                </div>
+                <h3 class="text-xl font-headline font-bold text-on-surface mb-2">12 Avatar Karakter & Custom Upload</h3>
+                <p class="text-sm font-body text-on-surface-variant mb-6 leading-relaxed">
+                  Jika belum memasang foto profil, sistem otomatis memberikan avatar kartun acak ceria yang ramah anak. Foto profil kustom disiarkan seketika via event SSE.
+                </p>
+              </div>
+              <div class="flex items-center justify-around p-3 rounded-2xl bg-surface-dim/80 text-on-surface-variant border border-white/5">
+                <span class="text-lg">🦁</span>
+                <span class="text-lg">🐻</span>
+                <span class="text-lg">🦊</span>
+                <span class="text-lg">🐱</span>
+                <span class="text-lg">🐼</span>
+                <span class="text-lg">🚀</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: TECHNICAL COMPARISON MATRIX (SSE vs WS vs Polling) -->
+      <section class="relative w-full px-4 sm:px-6 lg:px-12 py-24" id="architecture">
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center max-w-3xl mx-auto mb-16">
+            <div class="inline-flex items-center gap-2 text-xs font-label uppercase tracking-widest text-primary font-semibold mb-3">
+              <span class="material-symbols-outlined text-[16px]">compare_arrows</span>
+              Analisis Komparasi Jaringan
+            </div>
+            <h2 class="text-3xl sm:text-5xl font-headline font-bold text-on-surface tracking-tight mb-4">
+              Mengapa FamLoop Menggunakan Server-Sent Events (SSE)?
+            </h2>
+            <p class="text-base font-body text-on-surface-variant">
+              Aplikasi pelacak konvensional sering mengalami disconnect saat anak terhubung ke WiFi sekolah atau kantor karena port non-standar diblokir.
+            </p>
+          </div>
+
+          <div class="w-full overflow-x-auto rounded-3xl bg-surface-container/60 backdrop-blur-2xl shadow-2xl p-2 sm:p-6 border border-white/5">
+            <table class="w-full text-left border-collapse min-w-[680px]">
+              <thead>
+                <tr class="text-xs font-label uppercase tracking-wider text-on-surface-variant border-b border-primary/10">
+                  <th class="py-4 px-6 font-semibold">Kriteria Evaluasi</th>
+                  <th class="py-4 px-6 text-primary font-bold bg-primary/10 rounded-t-2xl">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                      FamLoop (SSE + HTTP/1.1)
+                    </div>
+                  </th>
+                  <th class="py-4 px-6 font-medium">WebSocket (WS)</th>
+                  <th class="py-4 px-6 font-medium">MQTT (Port 1883)</th>
+                </tr>
+              </thead>
+              <tbody class="text-sm font-body divide-y divide-primary/5">
+                <tr class="hover:bg-surface-container-high/40 transition-colors">
+                  <td class="py-4 px-6 font-semibold text-on-surface">
+                    Tembus Firewall Sekolah & Kantor
+                    <span class="block text-xs font-normal text-on-surface-variant">Kompatibilitas di proxy jaringan ketat</span>
+                  </td>
+                  <td class="py-4 px-6 font-medium text-emerald-400 bg-primary/5">
+                    99.9% Lolos (HTTP Standar)
+                  </td>
+                  <td class="py-4 px-6 text-on-surface-variant">Sering diblokir saat upgrade TCP</td>
+                  <td class="py-4 px-6 text-error">Port 1883 kerap diblokir ISP</td>
+                </tr>
+                <tr class="hover:bg-surface-container-high/40 transition-colors">
+                  <td class="py-4 px-6 font-semibold text-on-surface">
+                    Efisiensi Konsumsi Baterai
+                    <span class="block text-xs font-normal text-on-surface-variant">Beban proses latar belakang smartphone</span>
+                  </td>
+                  <td class="py-4 px-6 font-medium text-emerald-400 bg-primary/5">
+                    Sangat Hemat (Native HTTP stream)
+                  </td>
+                  <td class="py-4 px-6 text-on-surface-variant">Menjaga socket 2 arah terus aktif</td>
+                  <td class="py-4 px-6 text-on-surface-variant">Butuh MQTT client service terpisah</td>
+                </tr>
+                <tr class="hover:bg-surface-container-high/40 transition-colors">
+                  <td class="py-4 px-6 font-semibold text-on-surface">
+                    Mekanisme Auto-Reconnect
+                    <span class="block text-xs font-normal text-on-surface-variant">Saat HP beralih dari 4G ke WiFi</span>
+                  </td>
+                  <td class="py-4 px-6 font-medium text-emerald-400 bg-primary/5">
+                    Otomatis bawaan HTTP/SSE
+                  </td>
+                  <td class="py-4 px-6 text-on-surface-variant">Memerlukan logic reconnect manual</td>
+                  <td class="py-4 px-6 text-on-surface-variant">Handshake broker ulang</td>
+                </tr>
+                <tr class="hover:bg-surface-container-high/40 transition-colors">
+                  <td class="py-4 px-6 font-semibold text-on-surface">
+                    Arah Komunikasi Peta
+                    <span class="block text-xs font-normal text-on-surface-variant">Pola transmisi data live stream</span>
+                  </td>
+                  <td class="py-4 px-6 font-medium text-emerald-400 bg-primary/5 rounded-b-2xl">
+                    Unidirectional Server-ke-Client
+                  </td>
+                  <td class="py-4 px-6 text-on-surface-variant">Full-duplex dua arah</td>
+                  <td class="py-4 px-6 text-on-surface-variant">Pub/Sub Broker</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: ENTERPRISE & HOMELAB SELF-HOSTING PILLAR -->
+      <section class="relative w-full px-4 sm:px-6 lg:px-12 py-24 bg-surface-container-low/40" id="self-host">
+        <div class="max-w-7xl mx-auto">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-5">
+              <div class="inline-flex items-center gap-2 text-xs font-label uppercase tracking-widest text-primary font-semibold mb-3">
+                <span class="material-symbols-outlined text-[16px]">dns</span>
+                Self-Hosting Mandiri
+              </div>
+              <h2 class="text-3xl sm:text-5xl font-headline font-bold text-on-surface tracking-tight leading-tight mb-6">
+                Keluarga Anda. Server Anda. Bebas Vendor Lock-In.
+              </h2>
+              <p class="text-base font-body text-on-surface-variant leading-relaxed mb-8">
+                Jalankan seluruh sistem FamLoop di Homelab, Synology NAS, Raspberry Pi, atau VPS pribadi Anda hanya dalam 1 kontainer Docker ringan.
+              </p>
+              <div class="space-y-4 mb-8">
+                <div class="flex items-start gap-3.5">
+                  <div class="w-7 h-7 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
+                    <span class="material-symbols-outlined text-[18px]">database</span>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-label font-bold text-on-surface">Penyimpanan SQLite WAL Mode</h4>
+                    <p class="text-xs text-on-surface-variant">Data riwayat tersimpan rapi di satu file tanpa perlu instalasi database server yang berat.</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3.5">
+                  <div class="w-7 h-7 rounded-lg bg-tertiary/10 text-tertiary flex items-center justify-center shrink-0 mt-0.5">
+                    <span class="material-symbols-outlined text-[18px]">verified_user</span>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-label font-bold text-on-surface">Kepatuhan Standar OWASP & PT FCS</h4>
+                    <p class="text-xs text-on-surface-variant">Enkripsi password bcrypt dan JWT Bearer authentication untuk keamanan akun orang tua.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Terminal Block -->
+            <div class="lg:col-span-7 space-y-6">
+              <div class="rounded-3xl bg-surface-container-lowest/90 backdrop-blur-2xl shadow-2xl p-5 ring-1 ring-primary/20 border border-white/5">
+                <div class="flex items-center justify-between pb-4 border-b border-surface-container-high/60 mb-4">
+                  <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-error/70"></span>
+                    <span class="w-3 h-3 rounded-full bg-amber-400/70"></span>
+                    <span class="w-3 h-3 rounded-full bg-emerald-400/70"></span>
+                    <span class="ml-2 text-xs font-mono text-on-surface-variant">docker-compose.yml</span>
+                  </div>
+                  <button class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-high text-xs font-mono text-primary hover:bg-surface-bright transition-colors" onclick="navigator.clipboard.writeText('docker compose up -d'); alert('Perintah docker compose disalin!');">
+                    <span class="material-symbols-outlined text-[14px]">content_copy</span>
+                    <span>Salin</span>
+                  </button>
+                </div>
+                <pre class="font-mono text-xs sm:text-sm text-on-surface leading-relaxed overflow-x-auto p-2"><code><span class="text-on-surface-variant"># Jalankan FamLoop di server pribadi</span>
+<span class="text-primary">services</span>:
+  <span class="text-primary">famloop-server</span>:
+    <span class="text-tertiary">image</span>: famloop:latest
+    <span class="text-tertiary">restart</span>: unless-stopped
+    <span class="text-tertiary">volumes</span>:
+      - ./database:/app/database
+      - ./uploads:/app/uploads
+
+<span class="text-emerald-400 font-bold"># Endpoint Live: http://localhost:8080 (SSE & REST API)</span></code></pre>
+              </div>
+
+              <div class="grid grid-cols-3 gap-3 p-4 rounded-2xl bg-surface-container/60 backdrop-blur-md text-center border border-white/5">
+                <div class="p-3 rounded-xl bg-surface-container-low/60">
+                  <span class="material-symbols-outlined text-primary text-[22px] mb-1">memory</span>
+                  <div class="text-xs font-label font-bold text-on-surface">~35MB RAM</div>
+                  <div class="text-[10px] text-on-surface-variant">Go Fiber Core</div>
+                </div>
+                <div class="p-3 rounded-xl bg-surface-container-low/60">
+                  <span class="material-symbols-outlined text-emerald-400 text-[22px] mb-1">speed</span>
+                  <div class="text-xs font-label font-bold text-on-surface">&lt;10ms Latensi</div>
+                  <div class="text-[10px] text-on-surface-variant">Peta Real-Time</div>
+                </div>
+                <div class="p-3 rounded-xl bg-surface-container-low/60">
+                  <span class="material-symbols-outlined text-tertiary text-[22px] mb-1">lock</span>
+                  <div class="text-xs font-label font-bold text-on-surface">100% Mandiri</div>
+                  <div class="text-[10px] text-on-surface-variant">Tanpa Cloud Pihak Ketiga</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: DOWNLOAD APK CTA -->
+      <section class="relative w-full px-4 sm:px-6 lg:px-12 py-20">
+        <div class="max-w-6xl mx-auto">
+          <div class="relative rounded-3xl bg-gradient-to-b from-surface-container-high/80 via-surface-container/60 to-surface-container-lowest/80 backdrop-blur-2xl p-8 sm:p-14 text-center overflow-hidden shadow-[0_20px_80px_rgba(125,211,252,0.12)] border border-white/10">
+            <div class="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/25 blur-[120px] rounded-full"></div>
+            <div class="relative z-10 max-w-3xl mx-auto">
+              <h2 class="text-3xl sm:text-5xl font-headline font-extrabold text-on-surface tracking-tight mb-6">
+                Mulai Lindungi Keluarga Anda Hari Ini
+              </h2>
+              <p class="text-base sm:text-lg font-body text-on-surface-variant mb-10 leading-relaxed">
+                Unduh file APK rilis Android untuk dipasang langsung di HP Anda dan anggota keluarga.
+              </p>
+              <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl text-sm font-label font-bold uppercase tracking-wider text-on-primary bg-primary hover:bg-primary-fixed-dim shadow-[0_0_30px_rgba(125,211,252,0.4)] hover:shadow-[0_0_45px_rgba(125,211,252,0.6)] transition-all duration-300" href="/app-release.apk" download>
+                  <span class="material-symbols-outlined text-[20px]">download</span>
+                  <span>Unduh APK Android (.apk)</span>
+                </a>
+                <a class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-xl text-sm font-label font-semibold text-on-surface bg-surface-container-high/80 hover:bg-surface-bright backdrop-blur-md shadow-lg transition-all duration-200 border border-white/5" href="https://github.com/FujiwaraCreative" target="_blank" rel="noopener noreferrer">
+                  <span class="material-symbols-outlined text-[20px] text-primary">code</span>
+                  <span>Lihat Repository GitHub</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: ATTRIBUTION & PT FCS VERIFIED BADGE -->
+      <section class="relative w-full px-4 sm:px-6 lg:px-12 py-10 border-t border-primary/10">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-xs font-label text-on-surface-variant">
+          <div class="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-primary"></span>
+              <span class="text-on-surface font-medium">FamLoop Sovereign Protocols</span>
+            </div>
+            <span class="hidden sm:inline">•</span>
+            <span>Dikembangkan oleh <a class="text-primary hover:underline font-semibold" href="https://fujiwaracreative.my.id" target="_blank" rel="noopener noreferrer">PT FUJIWARA CREATIVE SOLUSINDO</a></span>
+          </div>
+
+          <!-- FCS Badge Embed -->
+          <div class="flex items-center gap-4">
+            <script src="https://fujiwaracreative.my.id/assets/js/fcs-badge.js" data-project="famloop" data-theme="dark" defer></script>
+            <span class="inline-flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-emerald-400">verified_user</span> ISO/IEC 27001 Aligned</span>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
-  <Footer />
+
+  <!-- Footer -->
+  <footer class="relative z-10 w-full bg-surface-container-lowest/80 backdrop-blur-2xl mt-16 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 py-12">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-on-surface-variant">
+        <div class="flex items-center gap-3">
+          <div class="w-7 h-7 rounded-lg bg-primary/20 flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined text-[16px]">all_inclusive</span>
+          </div>
+          <span class="text-on-surface font-semibold">FamLoop</span>
+          <span>© 2026 PT FUJIWARA CREATIVE SOLUSINDO. Hak Cipta Dilindungi Undang-Undang.</span>
+        </div>
+        <div class="flex items-center gap-6">
+          <a class="hover:text-primary transition-colors" href="/sitemap.xml">Sitemap XML</a>
+          <a class="hover:text-primary transition-colors" href="/llms.txt">llms.txt</a>
+          <a class="hover:text-primary transition-colors" href="/robots.txt">robots.txt</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 </Layout>

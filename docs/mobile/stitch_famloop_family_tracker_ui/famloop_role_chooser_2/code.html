@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-background" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_blank" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "inverse-surface": "#213145", "surface-container-low": "#eff4ff", "on-secondary-fixed": "#001f26", "on-secondary": "#ffffff", "outline": "#737686", "surface-container-highest": "#d3e4fe", "tertiary-fixed": "#6ffbbe", "inverse-on-surface": "#eaf1ff", "on-tertiary-fixed": "#002113", "tertiary-fixed-dim": "#4edea3", "surface-container-lowest": "#ffffff", "surface-dim": "#cbdbf5", "primary-fixed-dim": "#b4c5ff", "inverse-primary": "#b4c5ff", "on-error": "#ffffff", "on-secondary-container": "#006172", "on-primary": "#ffffff", "on-error-container": "#93000a", "on-primary-fixed": "#00174b", "on-tertiary": "#ffffff", "surface-container": "#e5eeff", "outline-variant": "#c3c6d7", "surface-tint": "#0053db", "primary": "#004ac6", "secondary": "#00687a", "surface-variant": "#d3e4fe", "tertiary-container": "#007d55", "background": "#f8f9ff", "on-tertiary-fixed-variant": "#005236", "on-background": "#0b1c30", "surface-container-high": "#dce9ff", "secondary-container": "#57dffe", "error-container": "#ffdad6", "on-surface-variant": "#434655", "on-secondary-fixed-variant": "#004e5c", "on-primary-fixed-variant": "#003ea8", "on-surface": "#0b1c30", "surface": "#f8f9ff", "secondary-fixed-dim": "#4cd7f6", "secondary-fixed": "#acedff", "primary-container": "#2563eb", "surface-bright": "#f8f9ff", "on-tertiary-container": "#bdffdb", "on-primary-container": "#eeefff", "tertiary": "#006242", "error": "#ba1a1a", "primary-fixed": "#dbe1ff" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-xs": "0.25rem", "space-md": "1rem", "gutter": "1rem", "margin-tablet": "1.5rem", "gutter-tablet": "1.5rem", "space-xl": "2rem", "space-sm": "0.5rem", "space-lg": "1.5rem", "gutter-desktop": "2rem", "margin": "1rem", "margin-desktop": "2rem" }, "fontFamily": { "display-lg": ["Inter"], "body-lg": ["Inter"], "label-lg": ["Inter"], "headline-sm": ["Inter"], "title-lg": ["Inter"], "headline-md": ["Inter"], "display-lg-mobile": ["Inter"], "body-md": ["Inter"], "label-sm": ["Inter"], "headline-lg": ["Inter"], "headline-lg-mobile": ["Inter"], "title-md": ["Inter"], "body-sm": ["Inter"], "label-md": ["Inter"] }, "fontSize": { "display-lg": ["44px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }], "title-lg": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "700" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }] } } } }</style><style>@layer base{html,body{margin:0;padding:0;min-height:100%;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style></head><body class="bg-background text-on-surface font-body-md text-body-md antialiased flex flex-col min-h-screen pt-safe pb-safe"><main class="flex-1 flex flex-col relative w-full bg-surface"><div class="flex flex-col w-full px-gutter pb-space-xl">
+  <!-- Subtle decorative ambient telemetry pulse -->
+  <div class="relative w-full pt-space-md pb-space-sm flex flex-col items-center text-center">
+    <!-- Brand Mark & Micro Beacon -->
+    <div class="relative mb-space-sm flex items-center justify-center">
+      <div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center shadow-sm">
+        <span class="material-symbols-outlined text-primary text-[28px]" style="font-variation-settings: 'FILL' 1;">share_location</span>
+      </div>
+      <div class="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-secondary-container rounded-full flex items-center justify-center">
+        <div class="w-2 h-2 rounded-full bg-secondary"></div>
+      </div>
+    </div>
+    
+    <div class="flex items-center gap-1.5 mb-1">
+      <span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">FamLoop</span>
+      <span class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-surface-container text-primary font-label-sm text-label-sm">v2.4</span>
+    </div>
+    <p class="font-body-sm text-body-sm text-on-surface-variant">Family Safety & Spatial Loop</p>
+  </div>
+
+  <!-- Header & Guidance -->
+  <div class="mt-space-sm mb-space-md text-left">
+    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low text-primary mb-2 shadow-sm">
+      <span class="material-symbols-outlined text-[16px]">sensors</span>
+      <span class="font-label-sm text-label-sm">Spatial Calibration Step 1 of 3</span>
+    </div>
+    <h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Select Your Role</h1>
+    <p class="font-body-md text-body-md text-on-surface-variant mt-1">Configure this device to manage your family circle or share your location seamlessly.</p>
+  </div>
+
+  <!-- Role Selection Interactive Stack -->
+  <div class="flex flex-col gap-space-md mb-space-lg" id="roleSelectorGroup">
+    
+    <!-- Role 1: Parent / Guardian (Default Active) -->
+    <div id="roleCardParent" onclick="selectRole('parent')" role="button" tabindex="0" class="group relative rounded-xl bg-surface-container-lowest p-space-md shadow-md transition-all duration-200 cursor-pointer overflow-hidden">
+      <!-- Active Edge Highlight Overlay (No CSS border class) -->
+      <div id="parentActiveBar" class="absolute inset-y-0 left-0 w-1.5 bg-primary"></div>
+      
+      <div class="pl-2">
+        <div class="flex items-start justify-between gap-3 mb-space-sm">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-sm">
+              <span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">shield_person</span>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-title-md text-title-md text-on-surface">Parent / Guardian</span>
+              </div>
+              <span class="inline-block mt-0.5 px-2 py-0.5 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm">Full Admin</span>
+            </div>
+          </div>
+
+          <!-- Radio Indicator (Active) -->
+          <div id="parentRadio" class="w-6 h-6 rounded-full bg-primary flex items-center justify-center shrink-0">
+            <div class="w-2.5 h-2.5 rounded-full bg-surface-container-lowest"></div>
+          </div>
+        </div>
+
+        <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm">
+          Complete spatial command center. Oversee zones, check battery health, and orchestrate SOS response circles.
+        </p>
+
+        <!-- Capabilities List -->
+        <div class="rounded-lg bg-surface-container-low p-space-sm flex flex-col gap-2">
+          <div class="flex items-center gap-2">
+            <div class="w-5 h-5 rounded-full bg-surface-container-lowest flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-primary text-[14px]">check</span>
+            </div>
+            <span class="font-body-sm text-body-sm text-on-surface">Live GPS & customizable geofencing</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-5 h-5 rounded-full bg-surface-container-lowest flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-primary text-[14px]">check</span>
+            </div>
+            <span class="font-body-sm text-body-sm text-on-surface">Battery level & dynamic motion alerts</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-5 h-5 rounded-full bg-surface-container-lowest flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-primary text-[14px]">check</span>
+            </div>
+            <span class="font-body-sm text-body-sm text-on-surface">24/7 Emergency SOS circle monitoring</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Role 2: Child / Family Member -->
+    <div id="roleCardChild" onclick="selectRole('child')" role="button" tabindex="0" class="group relative rounded-xl bg-surface-container-lowest p-space-md shadow-sm transition-all duration-200 cursor-pointer overflow-hidden">
+      <!-- Active Edge Highlight Overlay (hidden when inactive) -->
+      <div id="childActiveBar" class="absolute inset-y-0 left-0 w-1.5 bg-secondary hidden"></div>
+      
+      <div class="pl-2">
+        <div class="flex items-start justify-between gap-3 mb-space-sm">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-secondary shadow-sm">
+              <span class="material-symbols-outlined text-[24px]">phonelink_ring</span>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-title-md text-title-md text-on-surface">Child / Member</span>
+              </div>
+              <span class="inline-block mt-0.5 px-2 py-0.5 rounded-full bg-surface-container-high text-secondary font-label-sm text-label-sm">Battery Optimized</span>
+            </div>
+          </div>
+
+          <!-- Radio Indicator (Unselected) -->
+          <div id="childRadio" class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center shrink-0">
+            <div class="w-2.5 h-2.5 rounded-full bg-surface-container-lowest"></div>
+          </div>
+        </div>
+
+        <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm">
+          Discreet background telemetry with zero manual check-ins needed. Keeps your device safe and connected.
+        </p>
+
+        <!-- Capabilities List -->
+        <div class="rounded-lg bg-surface-container-low p-space-sm flex flex-col gap-2">
+          <div class="flex items-center gap-2">
+            <div class="w-5 h-5 rounded-full bg-surface-container-lowest flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-secondary text-[14px]">bolt</span>
+            </div>
+            <span class="font-body-sm text-body-sm text-on-surface">Automatic low-power spatial beacon</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-5 h-5 rounded-full bg-surface-container-lowest flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-secondary text-[14px]">emergency</span>
+            </div>
+            <span class="font-body-sm text-body-sm text-on-surface">One-touch panic emergency SOS</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-5 h-5 rounded-full bg-surface-container-lowest flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-secondary text-[14px]">lock</span>
+            </div>
+            <span class="font-body-sm text-body-sm text-on-surface">Encrypted: Only verified guardians view coordinates</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Efficiency & Trust Card -->
+  <div class="rounded-xl bg-surface-container-low p-space-sm flex items-center gap-3 mb-space-lg shadow-sm">
+    <div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center shrink-0">
+      <span class="material-symbols-outlined text-tertiary-container text-[20px]" style="font-variation-settings: 'FILL' 1;">battery_charging_full</span>
+    </div>
+    <div class="flex-1 min-w-0">
+      <div class="flex items-center gap-1.5">
+        <span class="font-label-md text-label-md text-on-surface">Low Draw Telemetry</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-tertiary-container"></span>
+      </div>
+      <p class="font-body-sm text-body-sm text-on-surface-variant truncate">Battery efficient: Uses < 1.5% battery per day.</p>
+    </div>
+  </div>
+
+  <!-- Primary and Secondary Actions -->
+  <div class="flex flex-col gap-space-sm items-center">
+    <button id="submitRoleBtn" type="button" class="w-full h-12 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-md active:opacity-90 active:scale-[0.99] transition-all">
+      <span>Continue Setup</span>
+      <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+    </button>
+    
+    <button type="button" class="min-h-[48px] px-space-md inline-flex items-center justify-center text-primary font-label-md text-label-md hover:underline">
+      <span>Need help pairing? View guide</span>
+    </button>
+  </div>
+</div>
+
+<script>
+  function selectRole(role) {
+    const parentCard = document.getElementById('roleCardParent');
+    const childCard = document.getElementById('roleCardChild');
+    const parentBar = document.getElementById('parentActiveBar');
+    const childBar = document.getElementById('childActiveBar');
+    const parentRadio = document.getElementById('parentRadio');
+    const childRadio = document.getElementById('childRadio');
+    const submitBtnText = document.querySelector('#submitRoleBtn span:first-child');
+
+    if (role === 'parent') {
+      // Parent Active
+      parentCard.classList.remove('shadow-sm');
+      parentCard.classList.add('shadow-md');
+      parentBar.classList.remove('hidden');
+      parentRadio.className = 'w-6 h-6 rounded-full bg-primary flex items-center justify-center shrink-0';
+
+      // Child Inactive
+      childCard.classList.remove('shadow-md');
+      childCard.classList.add('shadow-sm');
+      childBar.classList.add('hidden');
+      childRadio.className = 'w-6 h-6 rounded-full bg-surface-container flex items-center justify-center shrink-0';
+
+      if (submitBtnText) submitBtnText.textContent = 'Continue Setup as Guardian';
+    } else {
+      // Child Active
+      childCard.classList.remove('shadow-sm');
+      childCard.classList.add('shadow-md');
+      childBar.classList.remove('hidden');
+      childRadio.className = 'w-6 h-6 rounded-full bg-secondary flex items-center justify-center shrink-0';
+
+      // Parent Inactive
+      parentCard.classList.remove('shadow-md');
+      parentCard.classList.add('shadow-sm');
+      parentBar.classList.add('hidden');
+      parentRadio.className = 'w-6 h-6 rounded-full bg-surface-container flex items-center justify-center shrink-0';
+
+      if (submitBtnText) submitBtnText.textContent = 'Continue Setup as Member';
+    }
+  }
+</script></head><body></body></html>

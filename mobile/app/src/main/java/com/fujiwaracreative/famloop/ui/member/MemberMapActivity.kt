@@ -1,13 +1,20 @@
 package com.fujiwaracreative.famloop.ui.member
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.Typeface
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
+import android.view.Gravity
 import android.widget.Button
 import android.widget.FrameLayout
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.fujiwaracreative.famloop.data.local.SessionManager
 import com.fujiwaracreative.famloop.data.remote.NetworkClient
 import com.fujiwaracreative.famloop.service.LocationForegroundService
+import com.fujiwaracreative.famloop.ui.MainActivity
 import com.fujiwaracreative.famloop.ui.common.LeafletMapView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -21,45 +28,91 @@ class MemberMapActivity : AppCompatActivity() {
 
     private lateinit var mapView: LeafletMapView
     private var eventSource: EventSource? = null
-    private var currentGroupId: String = "default-group-id"
+    private var currentGroupId: String = ""
     private var currentDeviceId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        currentGroupId = intent.getStringExtra("EXTRA_GROUP_ID") ?: currentGroupId
-        currentDeviceId = intent.getStringExtra("EXTRA_DEVICE_ID") ?: currentDeviceId
+        val session = SessionManager.getInstance(this)
+        session.token?.let { NetworkClient.authToken = it }
+
+        currentGroupId = intent.getStringExtra("EXTRA_GROUP_ID") ?: (session.groupId ?: "")
+        currentDeviceId = intent.getStringExtra("EXTRA_DEVICE_ID") ?: ""
 
         val root = FrameLayout(this)
         mapView = LeafletMapView(this)
         root.addView(mapView, FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT))
 
-        // Tombol QR Code
-        val qrButton = Button(this).apply {
-            text = "Tampilkan QR Perangkat"
-            setBackgroundColor(android.graphics.Color.parseColor("#475569"))
-            setTextColor(android.graphics.Color.WHITE)
-            setOnClickListener {
-                startActivity(Intent(this@MemberMapActivity, MemberQrActivity::class.java))
+        // Top Action Bar
+        val topBar = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
+            setPadding(32, 48, 32, 24)
+            layoutParams = FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT
+            ).apply {
+                gravity = Gravity.TOP
             }
         }
-        val btnParams = FrameLayout.LayoutParams(
-            FrameLayout.LayoutParams.WRAP_CONTENT,
-            FrameLayout.LayoutParams.WRAP_CONTENT
-        ).apply {
-            gravity = android.view.Gravity.BOTTOM or android.view.Gravity.CENTER_HORIZONTAL
-            bottomMargin = 48
-        }
-        root.addView(qrButton, btnParams)
 
+        val qrButton = Button(this).apply {
+            text = "📱 QR Perangkat"
+            val bg = GradientDrawable().apply {
+                setColor(Color.parseColor("#EEFFFFFF"))
+                cornerRadius = 20f
+                setStroke(2, Color.parseColor("#E2E8F0"))
+            }
+            background = bg
+            setTextColor(Color.parseColor("#0F172A"))
+            textSize = 13f
+            setTypeface(null, Typeface.BOLD)
+            setPadding(32, 20, 32, 20)
+            setOnClickListener {
+                startActivity(Intent(this@MemberMapActivity, MemberQrActivity::class.java))
+                finish()
+            }
+        }
+        topBar.addView(qrButton)
+
+        val spacer = android.view.View(this).apply {
+            layoutParams = LinearLayout.LayoutParams(0, 1, 1f)
+        }
+        topBar.addView(spacer)
+
+        val switchBtn = Button(this).apply {
+            text = "Ganti Peran"
+            val bg = GradientDrawable().apply {
+                setColor(Color.parseColor("#EEFFFFFF"))
+                cornerRadius = 20f
+                setStroke(2, Color.parseColor("#E2E8F0"))
+            }
+            background = bg
+            setTextColor(Color.parseColor("#475569"))
+            textSize = 12f
+            setPadding(28, 20, 28, 20)
+            setOnClickListener {
+                val intent = Intent(this@MemberMapActivity, MainActivity::class.java).apply {
+                    putExtra("EXTRA_FORCE_CHOOSER", true)
+                }
+                startActivity(intent)
+                finish()
+            }
+        }
+        topBar.addView(switchBtn)
+
+        root.addView(topBar)
         setContentView(root)
 
-        // Otomatis nyalakan background foreground service tracking
+        // Otomatis nyalakan background foreground service tracking bila sudah dipasangkan
         if (currentDeviceId.isNotEmpty() && currentGroupId.isNotEmpty()) {
             LocationForegroundService.start(this, currentDeviceId, currentGroupId)
         }
 
-        loadInitialLocations()
-        startRealtimeStreaming()
+        if (currentGroupId.isNotEmpty()) {
+            loadInitialLocations()
+            startRealtimeStreaming()
+        }
     }
 
     private fun loadInitialLocations() {
@@ -67,7 +120,8 @@ class MemberMapActivity : AppCompatActivity() {
             try {
                 val resp = NetworkClient.apiService.getLatestLocations(currentGroupId)
                 if (resp.isSuccessful) {
-                    resp.body()?.data?.forEach { member ->
+                    val members = resp.body()?.data ?: emptyList()
+                    members.forEach { member ->
                         mapView.updateMemberMarker(
                             deviceId = member.device_id,
                             name = member.device_name,
@@ -78,11 +132,13 @@ class MemberMapActivity : AppCompatActivity() {
                             isOnline = member.is_active
                         )
                     }
-                    mapView.fitAll()
+                    if (members.isNotEmpty()) {
+                        mapView.fitAll()
+                    }
                 }
             } catch (e: Exception) {
                 runOnUiThread {
-                    Toast.makeText(this@MemberMapActivity, "Gagal memuat titik lokasi: ${e.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MemberMapActivity, "Info: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
             }
         }
